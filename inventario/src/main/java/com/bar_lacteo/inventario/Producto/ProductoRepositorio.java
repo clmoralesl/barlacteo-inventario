@@ -1,5 +1,7 @@
 package com.bar_lacteo.inventario.Producto;
 
-public class ProductoRepositorio {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductoRepositorio extends JpaRepository<Producto,Integer> {
 
 }
