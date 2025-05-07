@@ -23,7 +23,7 @@ public class ProductoControlador {
     @PostMapping("/registrar")
     public ResponseEntity<Producto> registrarProducto(@RequestBody Producto producto){
         Producto nuevoProducto = new Producto();
-        nuevoProducto.setIdProducto(producto.get);
+        nuevoProducto.setCodigoBarra(producto.getCodigoBarra());
         nuevoProducto.setNombreProducto(producto.getNombreProducto().trim());
         nuevoProducto.setDescripcion(producto.getDescripcion() !=null ? producto.getDescripcion().trim():null );
         nuevoProducto.setPrecioUnitario(producto.getPrecioUnitario());
