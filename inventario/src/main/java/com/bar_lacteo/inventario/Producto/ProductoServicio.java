@@ -9,7 +9,7 @@ public class ProductoServicio {
     @Autowired
     private ProductoRepositorio productoRepositorio;
 
-    public Producto creaProducto(Producto producto){
+    public Producto crearProducto(Producto producto){
         return productoRepositorio.save(producto);
     }
     //test
