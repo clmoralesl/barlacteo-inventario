@@ -4,8 +4,15 @@ package com.bar_lacteo.inventario.Producto;
 import com.bar_lacteo.inventario.Categoria.Categoria;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Producto")
 public class Producto {
@@ -23,66 +30,10 @@ public class Producto {
     @Column(name = "precio_unitario", nullable = false)
     private Integer precioUnitario;
 
+    @Column(name = "stock_min", nullable = false)
+    private Integer stockMinimo;
+
     @ManyToOne
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
-    
-    
-
-    public Producto() {
-    }
-
-    public Producto(Integer idProducto, String nombreProducto, String descripcion, Integer precioUnitario,
-            Categoria categoria) {
-        this.idProducto = idProducto;
-        this.nombreProducto = nombreProducto;
-        this.descripcion = descripcion;
-        this.precioUnitario = precioUnitario;
-        this.categoria = categoria;
-    }
-
-    public Integer getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public String getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Integer getPrecioUnitario() {
-        return precioUnitario;
-    }
-
-    public void setPrecioUnitario(Integer precioUnitario) {
-        this.precioUnitario = precioUnitario;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
-
-
-
-    
-
 }

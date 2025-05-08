@@ -7,7 +7,18 @@ import com.bar_lacteo.inventario.Producto.Producto;
 import com.bar_lacteo.inventario.Proveedor.Proveedor;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Lote")
 
@@ -38,6 +49,7 @@ public class Lote {
     @JoinColumn(name = "rut_proveedor")
     private Proveedor proveedor;
 
+<<<<<<< HEAD
 
     public Lote(){
 
@@ -130,4 +142,6 @@ public class Lote {
 
 
 
+=======
+>>>>>>> origin/main
 }
