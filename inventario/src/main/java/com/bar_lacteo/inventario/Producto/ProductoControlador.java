@@ -1,12 +1,11 @@
 package com.bar_lacteo.inventario.Producto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/producto")
@@ -16,21 +15,18 @@ public class ProductoControlador {
     @Autowired
     private ProductoServicio productoServicio;
 
-    ProductoControlador(ProductoRepositorio productoRepositorio){
+    ProductoControlador(ProductoRepositorio productoRepositorio) {
         this.productoRepositorio = productoRepositorio;
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<Producto> registrarProducto(@RequestBody Producto producto){
-        Producto nuevoProducto = new Producto();
-        nuevoProducto.setCodigoBarra(producto.getCodigoBarra());
-        nuevoProducto.setNombreProducto(producto.getNombreProducto().trim());
-        nuevoProducto.setDescripcion(producto.getDescripcion() !=null ? producto.getDescripcion().trim():null );
-        nuevoProducto.setPrecioUnitario(producto.getPrecioUnitario());
-        nuevoProducto.setCategoria(producto.getCategoria());
-
-        return ResponseEntity.ok(productoServicio.creaProducto(nuevoProducto));
-    }    
-
-
+    public ResponseEntity<?> registrarProducto(@RequestBody Producto producto) {
+         try {
+            Producto productoGuardado = productoServicio.crearProducto(producto);
+            return ResponseEntity.ok(productoGuardado);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al registrar el producto: " + e.getMessage());
+        }
+    }
 }

@@ -24,20 +24,6 @@ public class CategoriaControlador {
     this.categoriaServicio = categoriaServicio;
 }
 
-    /*@PostMapping("/registrar")
-    public ResponseEntity<?> registrarCategoria(@RequestParam String nombreCategoria){
-        if (nombreCategoria.isBlank()) {
-            return ResponseEntity.badRequest().body("El nombre no puede estar vacío");
-        }
-
-        Optional<Categoria> existente = categoriaRepositorio.findByNombreCategoria(nombreCategoria.trim());
-        if (existente.isPresent()) {
-        return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body("Ya existe una categoría con ese nombre");
-    }
-        Categoria nuevaCategoria = new Categoria(nombreCategoria);
-        return ResponseEntity.ok(categoriaServicio.crearCategoria(nuevaCategoria));
-    }*/
     @PostMapping("/registrar")
 public ResponseEntity<?> registrarCategoria(@RequestParam String nombreCategoria) {
     try {
@@ -50,7 +36,6 @@ public ResponseEntity<?> registrarCategoria(@RequestParam String nombreCategoria
     }
 }
 
-
     @GetMapping
     public List<Categoria> listarCategoria() {
         return categoriaRepositorio.findAll();
@@ -62,10 +47,7 @@ public ResponseEntity<?> registrarCategoria(@RequestParam String nombreCategoria
         if (!categoriaRepositorio.existsById(id)) {
             return ResponseEntity.status(404).body("Categoría no encontrada");
         }
-
         categoriaRepositorio.deleteById(id);
-
-
         return ResponseEntity.ok("Categoría eliminada con éxito");
     }
 }

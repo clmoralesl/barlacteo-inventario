@@ -1,5 +1,6 @@
 package com.bar_lacteo.inventario.Proveedor;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,10 +13,21 @@ public class Proveedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nombre;
-    private String rut;
-    private String contacto;
-    private String correo;
-    private String direccion;
+
+
+    @Column(name = "id_proveedor")
+    private Integer idProveedor;
+
+    @Column(name = "nombre_proveedor")
+    private String nombreProveedor;
+
+    @Column(name = "telefono_proveedor")
+    private String telefonoProveedor;
+
+    @Column(name = "email_proveedor")
+    private String emailProveedor;
+
+    @Column(name = "direccion_proveedor")
+    private String direccionProveedor;
+
 }
