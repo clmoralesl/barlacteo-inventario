@@ -14,6 +14,7 @@ public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
+
     @Column(name = "id_proveedor")
     private Integer idProveedor;
 
