@@ -1,4 +1,4 @@
-package com.bar_lacteo.inventario.Proveedor;
+package com.bar_lacteo.inventario.OrdenCompra;
 
 import java.util.List;
 
@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/proveedores")
-public class ProveedorControlador {
+@RequestMapping("/ordenes")
+public class OrdenCompraControlador {
 
-    private final ProveedorServicio service;
+    private final OrdenCompraServicio service;
 
-    public ProveedorControlador(ProveedorServicio service) {
+    public OrdenCompraControlador(OrdenCompraServicio service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Proveedor> listar() {
+    public List<OrdenCompra> listar() {
         return service.listar();
     }
 
     @PostMapping
-    public Proveedor guardar(@RequestBody Proveedor proveedor) {
-        return service.guardar(proveedor);
+    public OrdenCompra guardar(@RequestBody OrdenCompra orden) {
+        return service.guardar(orden);
     }
 
     @GetMapping("/{id}")
-    public Proveedor buscar(@PathVariable Long id) {
+    public OrdenCompra buscar(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
 
@@ -39,4 +39,5 @@ public class ProveedorControlador {
     public void eliminar(@PathVariable Long id) {
         service.eliminar(id);
     }
+    
 }
