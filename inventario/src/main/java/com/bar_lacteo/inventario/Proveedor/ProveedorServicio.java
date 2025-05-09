@@ -1,6 +1,7 @@
 package com.bar_lacteo.inventario.Proveedor;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,26 @@ public class ProveedorServicio {
         return repository.findAll();
     }
 
+    /*public Proveedor guardar(Proveedor proveedor) {
+        return repository.save(proveedor);
+    }*/
     public Proveedor guardar(Proveedor proveedor) {
+        // Limpiar espacios en los campos de tipo String
+        proveedor.setNombreProveedor(proveedor.getNombreProveedor().trim());
+        proveedor.setEmailProveedor(proveedor.getEmailProveedor().trim());
+        proveedor.setDireccionProveedor(proveedor.getDireccionProveedor().trim());
+        Optional<Proveedor> existente = repository.findByRutProveedorAndDvProveedor(
+            proveedor.getRutProveedor(),
+            proveedor.getDvProveedor()
+        );
+    
+        if (existente.isPresent()) {
+            throw new IllegalStateException("Ya existe un proveedor con ese RUT.");
+        }
+        if (repository.findByEmailProveedor(proveedor.getEmailProveedor()).isPresent()) {
+            throw new IllegalStateException("Ya existe un proveedor con ese correo electrónico.");
+        }
+    
         return repository.save(proveedor);
     }
 
