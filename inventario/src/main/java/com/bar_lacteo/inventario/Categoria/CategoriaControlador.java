@@ -25,16 +25,16 @@ public class CategoriaControlador {
 }
 
     @PostMapping("/registrar")
-public ResponseEntity<?> registrarCategoria(@RequestParam String nombreCategoria) {
-    try {
-        Categoria nuevaCategoria = categoriaServicio.registrar(nombreCategoria);
-        return ResponseEntity.ok(nuevaCategoria);
-    } catch (IllegalArgumentException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    } catch (IllegalStateException e) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+    public ResponseEntity<?> registrarCategoria(@RequestParam String nombreCategoria) {
+        try {
+            Categoria nuevaCategoria = categoriaServicio.registrar(nombreCategoria);
+            return ResponseEntity.ok(nuevaCategoria);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
-}
 
     @GetMapping
     public List<Categoria> listarCategoria() {
