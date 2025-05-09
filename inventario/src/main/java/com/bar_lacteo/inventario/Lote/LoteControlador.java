@@ -1,14 +1,17 @@
-/*
+
 package com.bar_lacteo.inventario.Lote;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.*;
 
 @RestController
-@RequestMapping("/ordenCompra")
+@RequestMapping("/lote")
 
 public class LoteControlador {
     private final LoteRepositorio loteRepositorio;
@@ -21,18 +24,26 @@ public class LoteControlador {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<Lote> registrarLote(@RequestBody Lote lote){
-        Lote nuevoLote = new Lote();
-        nuevoLote.setIdLote(lote.getIdLote());
-        nuevoLote.setNumeroLote(lote.getNumeroLote());
-        nuevoLote.setOrdenCompra(lote.getOrdenCompra());
-        nuevoLote.setProducto(lote.getProducto());
-        nuevoLote.setProveedor(lote.getProveedor());
-        nuevoLote.setStockLote(lote.getStockLote());
-
-        return ResponseEntity.ok(loteServicio.crearLote(nuevoLote));
+    public ResponseEntity<?> registrarLote(@RequestBody Lote lote){
+        try{
+            Lote loteGuardado = loteServicio.crearLote(lote);
+            return ResponseEntity.ok(loteGuardado);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar Lote: " + e.getMessage());
+        }
     }
 
+    @GetMapping("/listar")
+    public ResponseEntity<?> listarLotes(){
+        try{
+            List<Lote> lotes = loteServicio.listarLotes();
+            return ResponseEntity.ok(lotes);
+        }catch (IllegalStateException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al listar lotes: " + e.getMessage());
+        }
+    }
+    
 
-
-} */
+}
