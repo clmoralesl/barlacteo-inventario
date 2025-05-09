@@ -1,8 +1,10 @@
 package com.bar_lacteo.inventario.Producto;
 
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -18,5 +20,12 @@ public class ProductoServicio {
         }
         return productoRepositorio.save(producto);
     }
-    //test
+
+    public void eliminarProducto(Integer codigoBarra) {
+        if (!productoRepositorio.existsByCodigoBarra(codigoBarra)) {
+            throw new EntityNotFoundException("El código de barra" + codigoBarra + "no existe.");
+        }
+      productoRepositorio.deleteById(codigoBarra);
+    }
+
 }
