@@ -43,7 +43,7 @@ public class Lote {
     private OrdenCompra ordenCompra;
 
     @ManyToOne
-    @JoinColumn(name = "rut_proveedor")
+    @JoinColumn(name = "id_proveedor", referencedColumnName = "id")
     private Proveedor proveedor;
 
 }

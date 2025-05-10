@@ -26,3 +26,12 @@ INSERT INTO proveedor (rut_proveedor, dv_proveedor, nombre_proveedor, telefono_p
 VALUES (23456789, '2', 'Snacks y Galletas Ltda.', '912678345', 'contacto@snacksygalletas.cl', 'Avenida Colaciones 321, Concepción');
 INSERT INTO proveedor (rut_proveedor, dv_proveedor, nombre_proveedor, telefono_proveedor, email_proveedor, direccion_proveedor)
 VALUES (67890123, 'K', 'Importadora de Golosinas', '923456789', 'golosinas@importadora.cl', NULL);
+
+INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
+VALUES (1001, 101, 200, '2025-12-31', NULL, 1);
+INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
+VALUES (3001, 102, 150, '2025-11-15', NULL, 2);
+INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
+VALUES (4002, 103, 100, '2025-10-10', NULL, 3);
+INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
+VALUES (2001, 104, 180, '2026-01-20', NULL, 1);
