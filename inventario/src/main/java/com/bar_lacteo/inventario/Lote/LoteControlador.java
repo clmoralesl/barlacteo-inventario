@@ -14,14 +14,10 @@ import java.util.*;
 @RequestMapping("/lote")
 
 public class LoteControlador {
-    private final LoteRepositorio loteRepositorio;
 
     @Autowired
     private LoteServicio loteServicio;
 
-    LoteControlador(LoteRepositorio loteRepositorio){
-        this.loteRepositorio = loteRepositorio;
-    }
 
     @PostMapping("/registrar")
     public ResponseEntity<?> registrarLote(@RequestBody Lote lote){

@@ -16,9 +16,6 @@ public class LoteServicio {
 
     @Transactional
     public Lote crearLote(Lote lote){
-        if(loteRepositorio.existsById(lote.getIdLote())){
-            throw new IllegalArgumentException("Lote ya registrado");
-        }
         return loteRepositorio.save(lote);
     }
 
