@@ -50,13 +50,13 @@ public class ProveedorControlador {
 }
 
     @GetMapping("/{id_proveedor}")
-    public Proveedor buscar(@PathVariable Long id) {
-        return service.buscarPorId(id);
+    public Proveedor buscar(@PathVariable Long idProveedor) {
+        return service.buscarPorId(idProveedor);
     }
 
     @DeleteMapping("/{id_proveedor}")
-    public void eliminar(@PathVariable Long id) {
-        service.eliminar(id);
+    public void eliminar(@PathVariable Long idProveedor) {
+        service.eliminar(idProveedor);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

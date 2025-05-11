@@ -1,6 +1,6 @@
 package com.bar_lacteo.inventario.OrdenCompra;
 
-public enum EstadoOreden {
+public enum EstadoOrdenCompra {
     PENDIENTE,
     RECIBIDO,
     CANCELADO
