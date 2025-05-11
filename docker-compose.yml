@@ -1,38 +1,37 @@
+version: "3.8"
 services:
   mysql:
     image: mysql:8.0
-    container_name: barlacteo_mysql
+    container_name: inventario_mysql
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: barlacteo_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-    networks:
-      - app-network
-
   inventario:
     build:
       context: ./inventario
       dockerfile: Dockerfile
-    container_name: barlacteo_inventario
+    container_name: inventario_app
+    restart: unless-stopped
     ports:
       - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
     depends_on:
       - mysql
-    networks:
-      - app-network
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/barlacteo_db
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: 1234
-
 volumes:
   mysql_data:
 
-networks:
-  app-network:
-    driver: bridge
+
+
+  
+
+
