@@ -7,7 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.OnDelete;
+
 @Entity
 public class Movimiento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
 }

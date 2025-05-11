@@ -2,6 +2,8 @@ INSERT INTO categoria (nombre_categoria) VALUES ('Lacteos');
 INSERT INTO categoria (nombre_categoria) VALUES ('Bebidas');
 INSERT INTO categoria (nombre_categoria) VALUES ('Galletas');
 INSERT INTO categoria (nombre_categoria) VALUES ('Jugos');
+INSERT INTO categoria (nombre_categoria) VALUES ('PRUEBA-CATEGORIA');
+
 
 INSERT INTO producto (cod_barra, nombre_producto, descripcion, precio_unitario, stock_min, id_categoria) 
 VALUES (1001, 'Leche Chocolate 200cc ', 'Leche Fluida Semidescremada Chocolate Colun, 200ml', 590, 10, 1);

@@ -2,6 +2,7 @@ package com.bar_lacteo.inventario.Producto;
 
 
 import com.bar_lacteo.inventario.Categoria.Categoria;
+import com.bar_lacteo.inventario.Lote.Lote;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -46,4 +48,8 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Lote> lotes;
+
 }

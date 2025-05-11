@@ -1,8 +1,8 @@
-version: "3.8"
+version: '3.8'
 services:
   mysql:
     image: mysql:8.0
-    container_name: inventario_mysql
+    container_name: mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -13,22 +13,33 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - barlacteo_net
+
   inventario:
     build:
       context: ./inventario
       dockerfile: Dockerfile
-    container_name: inventario_app
+    container_name: inventario
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "${SPRING_PORT}:8080"
+    depends_on:
+      - mysql
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE}
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
-    depends_on:
-      - mysql
+    networks:
+     - barlacteo_net
+
+
 volumes:
   mysql_data:
+
+networks:
+  barlacteo_net: {}
+  
 
 
 
