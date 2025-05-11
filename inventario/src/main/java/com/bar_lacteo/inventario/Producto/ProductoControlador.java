@@ -14,15 +14,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 @RestController
-@RequestMapping("/producto")
+@RequestMapping("/api/producto")
 public class ProductoControlador {
+
     private final ProductoRepositorio productoRepositorio;
+    private final ProductoServicio productoServicio;
 
     @Autowired
-    private ProductoServicio productoServicio;
-
-    ProductoControlador(ProductoRepositorio productoRepositorio) {
+    public ProductoControlador(ProductoRepositorio productoRepositorio,
+     ProductoServicio productoServicio) {
         this.productoRepositorio = productoRepositorio;
+        this.productoServicio = productoServicio;
     }
 
     @PostMapping("/registrar")
