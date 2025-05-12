@@ -40,3 +40,4 @@ public class Proveedor {
 
     @Column(name = "direccion_proveedor")
     private String direccionProveedor;
+}
