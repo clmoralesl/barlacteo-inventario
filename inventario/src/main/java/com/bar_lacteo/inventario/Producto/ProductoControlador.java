@@ -37,8 +37,18 @@ public class ProductoControlador {
     }
 
     @GetMapping
-    public List<Producto> listarProductos(){
+    public List<Producto> mostrarProductos(){
         return productoRepositorio.findAll();
+    }
+
+    @GetMapping("/listar")
+    public ResponseEntity<?> listarProductos(){
+        try {
+            List<ProductoDTO> productos = productoServicio.listarProductos();
+            return ResponseEntity.ok(productos);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{codigoBarra}")

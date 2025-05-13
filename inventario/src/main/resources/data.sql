@@ -35,3 +35,5 @@ INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orde
 VALUES (4002, 103, 100, '2025-10-10', NULL, 3);
 INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
 VALUES (2001, 104, 180, '2026-01-20', NULL, 1);
+INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
+VALUES (2001, 106, 100, '2026-04-20', NULL, 1);
