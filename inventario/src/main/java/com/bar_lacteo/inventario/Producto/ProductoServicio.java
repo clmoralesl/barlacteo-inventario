@@ -27,7 +27,7 @@ public class ProductoServicio {
 
     public void eliminarProducto(Integer codigoBarra) {
         if (!productoRepositorio.existsByCodigoBarra(codigoBarra)) {
-            throw new EntityNotFoundException("El código de barra" + codigoBarra + "no existe.");
+            throw new EntityNotFoundException("El código de barra " + codigoBarra + " no existe.");
         }
       productoRepositorio.deleteById(codigoBarra);
     }
