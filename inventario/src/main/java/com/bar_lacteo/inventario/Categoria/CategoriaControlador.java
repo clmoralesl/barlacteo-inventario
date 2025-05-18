@@ -44,10 +44,13 @@ public class CategoriaControlador {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarCategoria(@PathVariable Integer id) {
-        if (!categoriaRepositorio.existsById(id)) {
-            return ResponseEntity.status(404).body("Categoría no encontrada");
+        try {
+            categoriaServicio.eliminarCategoria(id);
+            return ResponseEntity.ok("Categoría eliminada con éxito");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
-        categoriaRepositorio.deleteById(id);
-        return ResponseEntity.ok("Categoría eliminada con éxito");
     }
 }

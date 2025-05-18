@@ -27,7 +27,7 @@ public class ProductoServicio {
 
     public void eliminarProducto(Integer codigoBarra) {
         if (!productoRepositorio.existsByCodigoBarra(codigoBarra)) {
-            throw new EntityNotFoundException("El código de barra" + codigoBarra + "no existe.");
+            throw new EntityNotFoundException("El código de barra " + codigoBarra + " no existe.");
         }
       productoRepositorio.deleteById(codigoBarra);
     }
@@ -48,5 +48,35 @@ public class ProductoServicio {
             return productosdto;
     }
 
+        public List<ProductoDTO> productoBajoStock(){
+        List<Object[]> datos = productoRepositorio.productosStockBajo();
+        List<ProductoDTO> productosdto  = new ArrayList<>();
+        for(Object[] fila : datos){
+            Integer stockActual = ((BigDecimal) fila[3]).intValue();
+            ProductoDTO producto = new ProductoDTO(
+                (Integer) fila[0], 
+                (String) fila[1],
+                (Integer) fila[2],
+                stockActual,
+                (Integer) fila[4],
+                (String) fila[5]);
+            productosdto.add(producto);}
+            return productosdto;
+    }
+
+    @Transactional
+    public Producto actualizarProducto(Integer codigoBarra, Producto productoActualizado) {
+
+        Producto productoExistente = productoRepositorio.findByCodigoBarra(codigoBarra)
+                .orElseThrow(() -> new EntityNotFoundException("Producto con código de barra " + codigoBarra + " no encontrado"));
+
+        productoExistente.setNombreProducto(productoActualizado.getNombreProducto());
+        productoExistente.setDescripcion(productoActualizado.getDescripcion());
+        productoExistente.setPrecioUnitario(productoActualizado.getPrecioUnitario());
+        productoExistente.setStockMinimo(productoActualizado.getStockMinimo());
+        productoExistente.setCategoria(productoActualizado.getCategoria());
+
+        return productoRepositorio.save(productoExistente);
+    }
 
 }

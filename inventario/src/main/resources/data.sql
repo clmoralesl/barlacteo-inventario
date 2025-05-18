@@ -4,9 +4,9 @@ INSERT INTO categoria (nombre_categoria) VALUES ('Galletas');
 INSERT INTO categoria (nombre_categoria) VALUES ('Jugos');
 
 INSERT INTO producto (cod_barra, nombre_producto, descripcion, precio_unitario, stock_min, id_categoria) 
-VALUES (1001, 'Leche Chocolate 200cc ', 'Leche Fluida Semidescremada Chocolate Colun, 200ml', 590, 10, 1);
+VALUES (1001, 'Leche Chocolate 200cc ', 'Leche Fluida Semidescremada Chocolate Colun, 200ml', 590, 100, 1);
 INSERT  INTO producto (cod_barra, nombre_producto, descripcion, precio_unitario, stock_min, id_categoria) 
-VALUES (1002, 'Yoghurt Protein Natural 155 g', 'Yoghurt Batido Protein+ Natural Endulzado Soprole, 155g', 650, 15, 1);
+VALUES (1002, 'Yoghurt Protein Natural 155 g', 'Yoghurt Batido Protein+ Natural Endulzado Soprole, 155g', 650, 150, 1);
 INSERT INTO producto (cod_barra, nombre_producto, descripcion, precio_unitario, stock_min, id_categoria) 
 VALUES (2001, 'Agua Mineral Con Gas Botella 1,6 L', 'Agua Mineral Gasificada Cachantun, 1600ml', 1090, 20, 2);
 INSERT INTO producto (cod_barra, nombre_producto, descripcion, precio_unitario, stock_min, id_categoria) 
@@ -28,7 +28,7 @@ INSERT INTO proveedor (rut_proveedor, dv_proveedor, nombre_proveedor, telefono_p
 VALUES (67890123, 'K', 'Importadora de Golosinas', '923456789', 'golosinas@importadora.cl', NULL);
 
 INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
-VALUES (1001, 101, 200, '2025-12-31', NULL, 1);
+VALUES (1001, 101, 50, '2025-12-31', NULL, 1);
 INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
 VALUES (3001, 102, 150, '2025-11-15', NULL, 2);
 INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
@@ -37,3 +37,6 @@ INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orde
 VALUES (2001, 104, 180, '2026-01-20', NULL, 1);
 INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor)
 VALUES (2001, 106, 100, '2026-04-20', NULL, 1);
+
+INSERT INTO usuario (nombre_usuario, contrasenia, rol)
+VALUES ('administrador', '{noop}barlacteo', 'ADMIN');
