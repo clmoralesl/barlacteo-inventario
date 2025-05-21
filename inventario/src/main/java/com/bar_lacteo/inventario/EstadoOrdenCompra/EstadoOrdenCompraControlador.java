@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/Estado-orden-compra")
+@RequestMapping("/api/estado-orden-compra")
 public class EstadoOrdenCompraControlador {
     private final EstadoOrdenCompraRepositorio repositorio;
 

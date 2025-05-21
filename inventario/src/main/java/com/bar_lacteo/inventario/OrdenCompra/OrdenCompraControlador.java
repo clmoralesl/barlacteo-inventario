@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/ordenes")
+@RequestMapping("/api/ordenes")
 public class OrdenCompraControlador {
 
     private final OrdenCompraServicio service;

@@ -21,7 +21,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/proveedores")
+@RequestMapping("/api/proveedores")
 public class ProveedorControlador {
 
     private final ProveedorServicio service;
