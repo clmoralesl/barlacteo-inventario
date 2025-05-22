@@ -38,4 +38,18 @@ public class CategoriaServicio {
         }
         categoriaRepositorio.deleteById(id);
     }
+    
+    @Transactional
+    public Categoria actualizarNombre(Integer id, String nuevoNombre) {
+        if (nuevoNombre == null || nuevoNombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío");
+        }
+        Categoria categoria = categoriaRepositorio.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Categoría con ID " + id + " no encontrada"));
+        if (categoriaRepositorio.findByNombreCategoria(nuevoNombre.trim()).isPresent()) {
+            throw new IllegalStateException("Ya existe una categoría con ese nombre");
+        }
+        categoria.setNombreCategoria(nuevoNombre.trim());
+        return categoriaRepositorio.save(categoria);
+    }
 }
