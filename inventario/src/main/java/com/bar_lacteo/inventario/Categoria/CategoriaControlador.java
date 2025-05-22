@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,4 +54,18 @@ public class CategoriaControlador {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizarCategoria(
+            @PathVariable Integer id,
+            @RequestParam String nuevoNombre) {
+        try {
+            Categoria categoriaActualizada = categoriaServicio.actualizarNombre(id, nuevoNombre);
+            return ResponseEntity.ok(categoriaActualizada);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
+    }  
 }
