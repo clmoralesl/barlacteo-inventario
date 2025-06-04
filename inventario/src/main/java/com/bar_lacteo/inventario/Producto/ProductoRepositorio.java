@@ -13,6 +13,7 @@ public interface ProductoRepositorio extends JpaRepository<Producto,Integer> {
     boolean existsByCodigoBarra(Integer codigoBarra);
     Optional<Producto>findByCodigoBarra(Integer codigoBarra);
     boolean existsByCategoriaIdCategoria(Integer idCategoria);
+    void deleteByCodigoBarra(Integer codigoBarra);
 @Query(value = """
     SELECT 
         p.cod_barra, 
