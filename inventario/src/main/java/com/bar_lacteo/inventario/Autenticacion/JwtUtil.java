@@ -10,11 +10,18 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Base64;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKey;
 
 @Component
 public class JwtUtil {
 
-    private final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512); // Generate a secure key
+    private static final String SECRET = "mi_clave_super_secreta_que_debe_ser_larga_y_segura_1234567890";
+    private static final SecretKey SECRET_KEY = new SecretKeySpec(
+        Base64.getEncoder().encode(SECRET.getBytes()),
+        SignatureAlgorithm.HS512.getJcaName()
+    );
     private final long EXPIRATION_TIME = 1000 * 60 * 60 * 8;
 
     public String generateToken(String username, String role) {
@@ -26,7 +33,7 @@ public class JwtUtil {
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SECRET_KEY, SignatureAlgorithm.HS512) // Use the generated secure key
+                .signWith(SECRET_KEY, SignatureAlgorithm.HS512)
                 .compact();
     }
 

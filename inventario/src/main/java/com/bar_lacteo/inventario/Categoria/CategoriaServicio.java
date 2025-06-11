@@ -22,7 +22,7 @@ public class CategoriaServicio {
         }
         Optional<Categoria> existente = categoriaRepositorio.findByNombreCategoria(nombreCategoria.trim());
         if (existente.isPresent()) {
-            throw new IllegalStateException("Ya existe una categoría con ese nombre");
+            throw new IllegalStateException("Ya existe una categor ,ía con ese nombre");
         }
         Categoria nuevaCategoria = new Categoria(nombreCategoria.trim());
         return categoriaRepositorio.save(nuevaCategoria);
