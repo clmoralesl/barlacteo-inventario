@@ -1,8 +1,9 @@
 package com.bar_lacteo.inventario.com.bar_lacteo.inventario.Producto;
 
-import com.bar_lacteo.inventario.Producto.Producto;
-import com.bar_lacteo.inventario.Producto.ProductoRepositorio;
-import com.bar_lacteo.inventario.Producto.ProductoServicio;
+import com.bar_lacteo.inventario.Modelo.Producto;
+import com.bar_lacteo.inventario.Repositorio.ProductoRepositorio;
+import com.bar_lacteo.inventario.Servicio.ProductoServicio;
+
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
