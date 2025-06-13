@@ -14,7 +14,7 @@ import com.bar_lacteo.inventario.Modelo.OrdenCompra;
 import com.bar_lacteo.inventario.Servicio.OrdenCompraServicio;
 
 @RestController
-@RequestMapping("/ordenes")
+@RequestMapping("/api/ordenes")
 public class OrdenCompraControlador {
 
     private final OrdenCompraServicio service;

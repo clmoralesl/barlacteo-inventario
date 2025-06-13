@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController
-@RequestMapping("/producto")
+@RequestMapping("/api/producto")
 public class ProductoControlador {
 
     private final ProductoRepositorio productoRepositorio;

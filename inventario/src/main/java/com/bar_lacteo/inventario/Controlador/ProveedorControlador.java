@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/proveedores")
+@RequestMapping("/api/proveedores")
 public class ProveedorControlador {
 
     private final ProveedorServicio service;
@@ -52,12 +52,12 @@ public class ProveedorControlador {
     }
 }
 
-    @GetMapping("/{id_proveedor}")
+    @GetMapping("/{id}")
     public Proveedor buscar(@PathVariable Long id) {
         return service.buscarPorId(id);
     }
 
-    @DeleteMapping("/{id_proveedor}")
+    @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id) {
         service.eliminar(id);
     }
