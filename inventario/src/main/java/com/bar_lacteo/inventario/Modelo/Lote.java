@@ -2,6 +2,8 @@ package com.bar_lacteo.inventario.Modelo;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,6 +34,7 @@ public class Lote {
     private Integer stockLote;
 
     @Column(name = "fecha_vencimiento")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date fechaVencimiento;
 
     @ManyToOne

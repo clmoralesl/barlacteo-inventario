@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.lang.NonNull;
 
 import com.bar_lacteo.inventario.Controlador.ProductoControlador;
+import com.bar_lacteo.inventario.DTO.ProductoDTO;
 
 @Component
 public class ProductoModeloAssembler implements RepresentationModelAssembler<ProductoDTO, EntityModel<ProductoDTO>> {

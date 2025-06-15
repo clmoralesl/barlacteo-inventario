@@ -8,8 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bar_lacteo.inventario.DTO.ProductoDTO;
 import com.bar_lacteo.inventario.Modelo.Producto;
-import com.bar_lacteo.inventario.Producto.ProductoDTO;
 import com.bar_lacteo.inventario.Repositorio.ProductoRepositorio;
 
 import jakarta.persistence.EntityNotFoundException;
