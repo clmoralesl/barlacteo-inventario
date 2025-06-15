@@ -1,6 +1,7 @@
 package com.bar_lacteo.inventario.Controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.hateoas.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +9,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import com.bar_lacteo.inventario.DTO.ProductoDTO;
 import com.bar_lacteo.inventario.Modelo.Producto;
-import com.bar_lacteo.inventario.Producto.ProductoDTO;
 import com.bar_lacteo.inventario.Producto.ProductoModeloAssembler;
 import com.bar_lacteo.inventario.Repositorio.ProductoRepositorio;
 import com.bar_lacteo.inventario.Servicio.ProductoServicio;
@@ -38,7 +39,12 @@ public class ProductoControlador {
         this.productoRepositorio = productoRepositorio;
     }
 
-    @GetMapping
+    @GetMapping( produces = "application/json; charset=UTF-8")
+    public List<Producto> mostrarProductos(){
+        return productoRepositorio.findAll();
+    }
+
+    @GetMapping("/listar_alt")
     public CollectionModel<EntityModel<ProductoDTO>> listarProductos() {
         List<EntityModel<ProductoDTO>> productos = productoServicio.listarProductos().stream()
                 .map(assembler::toModel)
@@ -48,7 +54,12 @@ public class ProductoControlador {
                 linkTo(methodOn(ProductoControlador.class).listarProductos()).withSelfRel());
     }
 
-    @GetMapping("/stock_bajo")
+    @GetMapping("/listar")
+    public List<ProductoDTO> listarProductosJson() {
+        return productoServicio.listarProductos();
+    }
+     
+    @GetMapping("/stock_bajo_alt")
     public CollectionModel<EntityModel<ProductoDTO>> productoStockBajo() {
         List<EntityModel<ProductoDTO>> productos = productoServicio.productoBajoStock().stream()
                 .map(assembler::toModel)
@@ -56,6 +67,12 @@ public class ProductoControlador {
 
         return CollectionModel.of(productos,
                 linkTo(methodOn(ProductoControlador.class).productoStockBajo()).withSelfRel());
+    }
+    
+
+    @GetMapping("/stock_bajo")
+    public List<ProductoDTO> productoStockBajoJson() {
+        return productoServicio.productoBajoStock();
     }
 
     @GetMapping("/{codigoBarra}")
@@ -85,6 +102,9 @@ public class ProductoControlador {
             return ResponseEntity.ok("Producto eliminado exitosamente");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body("Error al eliminar, producto se encuentra asociado a un lote o movimiento");
         }
     }
 

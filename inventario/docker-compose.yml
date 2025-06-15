@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   app:
     image: inventario:latest
@@ -8,7 +9,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://barlacteo_mysql:3306/barlacteo_db?autoReconnect=true&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://barlacteo_mysql:3306/barlacteo_db?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
       - SPRING_DATASOURCE_USERNAME=user
       - SPRING_DATASOURCE_PASSWORD=1234
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
@@ -20,9 +21,11 @@ services:
       - SPRING_SQL_INIT_PLATFORM=mysql
       - SPRING_APPLICATION_NAME=inventario
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy 
     networks:
-      - mysql-network  
+      - mysql-network
+
   mysql:
     image: mysql:8.0
     container_name: barlacteo_mysql
@@ -35,6 +38,9 @@ services:
       - "3306:3306"
     networks:
       - mysql-network
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uuser", "-p1234"]
       interval: 10s
