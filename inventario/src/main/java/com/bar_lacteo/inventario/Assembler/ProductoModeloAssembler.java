@@ -18,13 +18,9 @@ public class ProductoModeloAssembler implements RepresentationModelAssembler<Pro
     public EntityModel<ProductoDTO> toModel(@NonNull ProductoDTO producto) {
 
         return EntityModel.of(producto,
-                // Link al recurso actual (detalle del producto)
+
                 linkTo(methodOn(ProductoControlador.class).obtenerProductoPorCodigo(producto.getCodBarra())).withSelfRel(),
-
-                // Link a la lista general
                 linkTo(methodOn(ProductoControlador.class).listarProductos()).withRel("Detalles de stock"),
-
-                // Link a productos con stock bajo
                 linkTo(methodOn(ProductoControlador.class).productoStockBajo()).withRel("Bajo stock")
         );
     }

@@ -17,7 +17,7 @@ public class CategoriaModeloAssembler implements RepresentationModelAssembler<Ca
                 linkTo(methodOn(CategoriaControlador.class).listarCategoria()).withRel("categorias"),
                 linkTo(methodOn(CategoriaControlador.class).eliminarCategoria(categoria.getIdCategoria())).withRel("eliminar"),
                 linkTo(methodOn(CategoriaControlador.class).actualizarCategoria(
-                        categoria.getIdCategoria(), categoria.getNombreCategoria())).withRel("actualizar"));
-                //linkTo(methodOn(CategoriaControlador.class).obtenerCategoria(categoria.getIdCategoria())).withRel("self"));
+                        categoria.getIdCategoria(), categoria.getNombreCategoria())).withRel("actualizar"),
+                linkTo(methodOn(CategoriaControlador.class).obtenerCategoria(categoria.getIdCategoria())).withRel("self"));
     }
 }

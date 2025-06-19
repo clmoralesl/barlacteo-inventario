@@ -11,6 +11,10 @@ import com.bar_lacteo.inventario.Autenticacion.JwtUtil;
 import com.bar_lacteo.inventario.Autenticacion.UserDetailServiceImpl;
 import com.bar_lacteo.inventario.Usuario.UsuarioRepositorio;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Login")
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

@@ -44,7 +44,7 @@ public class CategoriaControlador {
     public ResponseEntity<?> registrarCategoria(@RequestParam String nombreCategoria) {
         try {
             Categoria nuevaCategoria = categoriaServicio.registrar(nombreCategoria);
-            return ResponseEntity.ok(nuevaCategoria);
+                return ResponseEntity.ok(assembler.toModel(nuevaCategoria));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         } catch (IllegalStateException e) {
@@ -53,11 +53,6 @@ public class CategoriaControlador {
     }
 
     @GetMapping
-    public List<Categoria> listarCategorias() {
-        return categoriaRepositorio.findAll();
-        
-    } 
-    @GetMapping("v2/listar")
     public CollectionModel<EntityModel<Categoria>> listarCategoria() {
         List<EntityModel<Categoria>> categorias = categoriaRepositorio.findAll().stream()
             .map(categoria -> EntityModel.of(categoria,
@@ -71,6 +66,13 @@ public class CategoriaControlador {
         return CollectionModel.of(categorias,
                 linkTo(methodOn(CategoriaControlador.class).listarCategoria()).withSelfRel());
     } 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> obtenerCategoria(@PathVariable Integer id) {
+        return categoriaRepositorio.findById(id)
+            .<ResponseEntity<?>>map(categoria -> ResponseEntity.ok(assembler.toModel(categoria)))
+            .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Categoría no encontrada"));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarCategoria(@PathVariable Integer id) {

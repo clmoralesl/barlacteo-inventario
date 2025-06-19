@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import com.bar_lacteo.inventario.Assembler.ProductoEntidadModeloAssembler;
 import com.bar_lacteo.inventario.Assembler.ProductoModeloAssembler;
 import com.bar_lacteo.inventario.DTO.ProductoDTO;
 import com.bar_lacteo.inventario.Modelo.Producto;
@@ -36,31 +37,33 @@ public class ProductoControlador {
     @Autowired
     private ProductoModeloAssembler assembler;
 
+    @Autowired
+    private ProductoEntidadModeloAssembler productoEntidadAssembler;
+
     public ProductoControlador(ProductoRepositorio productoRepositorio) {
         this.productoRepositorio = productoRepositorio;
     }
 
-    @GetMapping( produces = "application/json; charset=UTF-8")
-    public List<Producto> mostrarProductos(){
-        return productoRepositorio.findAll();
+    @GetMapping(produces = "application/json; charset=UTF-8")
+    public CollectionModel<EntityModel<Producto>> mostrarProductos() {
+        List<EntityModel<Producto>> productos = productoRepositorio.findAll().stream()
+            .map(productoEntidadAssembler::toModel)
+            .toList();
+
+        return CollectionModel.of(productos,
+            linkTo(methodOn(ProductoControlador.class).mostrarProductos()).withSelfRel());
     }
 
-    @GetMapping("/v2/listar")
+    @GetMapping("/listar")
     public CollectionModel<EntityModel<ProductoDTO>> listarProductos() {
         List<EntityModel<ProductoDTO>> productos = productoServicio.listarProductos().stream()
                 .map(assembler::toModel)
                 .collect(Collectors.toList());
-
         return CollectionModel.of(productos,
                 linkTo(methodOn(ProductoControlador.class).listarProductos()).withSelfRel());
     }
-
-    @GetMapping("/listar")
-    public List<ProductoDTO> listarProductosJson() {
-        return productoServicio.listarProductos();
-    }
      
-    @GetMapping("/v2/stock_bajo")
+    @GetMapping("/stock_bajo")
     public CollectionModel<EntityModel<ProductoDTO>> productoStockBajo() {
         List<EntityModel<ProductoDTO>> productos = productoServicio.productoBajoStock().stream()
                 .map(assembler::toModel)
@@ -70,11 +73,6 @@ public class ProductoControlador {
                 linkTo(methodOn(ProductoControlador.class).productoStockBajo()).withSelfRel());
     }
     
-
-    @GetMapping("/stock_bajo")
-    public List<ProductoDTO> productoStockBajoJson() {
-        return productoServicio.productoBajoStock();
-    }
 
     @GetMapping("/{codigoBarra}")
     public EntityModel<ProductoDTO> obtenerProductoPorCodigo(@PathVariable Integer codigoBarra) {
@@ -89,7 +87,8 @@ public class ProductoControlador {
     public ResponseEntity<?> registrarProducto(@Valid @RequestBody Producto producto) {
         try {
             Producto productoGuardado = productoServicio.crearProducto(producto);
-            return ResponseEntity.ok(productoGuardado);
+            EntityModel<Producto> productoModel = productoEntidadAssembler.toModel(productoGuardado);
+            return ResponseEntity.status(HttpStatus.CREATED).body(productoModel);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error al registrar el producto: " + e.getMessage());
@@ -120,7 +119,8 @@ public class ProductoControlador {
             }
 
             Producto productoModificado = productoServicio.actualizarProducto(codigoBarra, productoActualizado);
-            return ResponseEntity.ok(productoModificado);
+            EntityModel<Producto> productoModel = productoEntidadAssembler.toModel(productoModificado);
+            return ResponseEntity.ok(productoModel);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("Producto con código de barra " + codigoBarra + " no encontrado");
