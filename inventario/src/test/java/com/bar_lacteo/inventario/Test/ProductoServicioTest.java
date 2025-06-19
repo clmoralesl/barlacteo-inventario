@@ -1,4 +1,4 @@
-package com.bar_lacteo.inventario.com.bar_lacteo.inventario.Producto;
+package com.bar_lacteo.inventario.Test;
 
 import com.bar_lacteo.inventario.Modelo.Producto;
 import com.bar_lacteo.inventario.Repositorio.ProductoRepositorio;

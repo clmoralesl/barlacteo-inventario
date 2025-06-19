@@ -1,4 +1,4 @@
-package com.bar_lacteo.inventario.Producto;
+package com.bar_lacteo.inventario.Assembler;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
@@ -22,10 +22,10 @@ public class ProductoModeloAssembler implements RepresentationModelAssembler<Pro
                 linkTo(methodOn(ProductoControlador.class).obtenerProductoPorCodigo(producto.getCodBarra())).withSelfRel(),
 
                 // Link a la lista general
-                linkTo(methodOn(ProductoControlador.class).listarProductos()).withRel("todos"),
+                linkTo(methodOn(ProductoControlador.class).listarProductos()).withRel("Detalles de stock"),
 
                 // Link a productos con stock bajo
-                linkTo(methodOn(ProductoControlador.class).productoStockBajo()).withRel("bajo-stock")
+                linkTo(methodOn(ProductoControlador.class).productoStockBajo()).withRel("Bajo stock")
         );
     }
 }

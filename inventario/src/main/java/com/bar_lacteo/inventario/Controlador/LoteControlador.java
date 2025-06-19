@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bar_lacteo.inventario.Modelo.Lote;
 import com.bar_lacteo.inventario.Servicio.LoteServicio;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.*;
-
+@Tag(name = "Lote", description = "Gestión de lotes de productos en el inventario")
 @RestController
 @RequestMapping("/api/lote")
 

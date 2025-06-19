@@ -2,6 +2,9 @@ package com.bar_lacteo.inventario.Controlador;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,21 +16,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bar_lacteo.inventario.Assembler.CategoriaModeloAssembler;
 import com.bar_lacteo.inventario.Modelo.Categoria;
 import com.bar_lacteo.inventario.Repositorio.CategoriaRepositorio;
 import com.bar_lacteo.inventario.Servicio.CategoriaServicio;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+@Tag(name = "Categoría", description = "Controlador para gestionar categorías del inventario")
 @RestController
 @RequestMapping("/api/categoria")
 public class CategoriaControlador {
 
+    
     private final CategoriaRepositorio categoriaRepositorio;
     private final CategoriaServicio categoriaServicio;
 
+    @Autowired
+    private CategoriaModeloAssembler assembler;
+
     public CategoriaControlador(CategoriaRepositorio categoriaRepositorio, CategoriaServicio categoriaServicio) {
-    this.categoriaRepositorio = categoriaRepositorio;
-    this.categoriaServicio = categoriaServicio;
-}
+        this.categoriaRepositorio = categoriaRepositorio;
+        this.categoriaServicio = categoriaServicio;
+    }
 
     @PostMapping("/registrar")
     public ResponseEntity<?> registrarCategoria(@RequestParam String nombreCategoria) {
@@ -42,9 +53,23 @@ public class CategoriaControlador {
     }
 
     @GetMapping
-    public List<Categoria> listarCategoria() {
+    public List<Categoria> listarCategorias() {
         return categoriaRepositorio.findAll();
         
+    } 
+    @GetMapping("v2/listar")
+    public CollectionModel<EntityModel<Categoria>> listarCategoria() {
+        List<EntityModel<Categoria>> categorias = categoriaRepositorio.findAll().stream()
+            .map(categoria -> EntityModel.of(categoria,
+                    linkTo(methodOn(CategoriaControlador.class).listarCategoria()).withSelfRel(),
+                    linkTo(methodOn(CategoriaControlador.class).eliminarCategoria(categoria.getIdCategoria())).withRel("eliminar"),
+                    linkTo(methodOn(CategoriaControlador.class).actualizarCategoria(
+                        categoria.getIdCategoria(), categoria.getNombreCategoria())).withRel("actualizar")
+            ))
+            .toList();
+
+        return CollectionModel.of(categorias,
+                linkTo(methodOn(CategoriaControlador.class).listarCategoria()).withSelfRel());
     } 
 
     @DeleteMapping("/{id}")
@@ -65,7 +90,7 @@ public class CategoriaControlador {
             @RequestParam String nuevoNombre) {
         try {
             Categoria categoriaActualizada = categoriaServicio.actualizarNombre(id, nuevoNombre);
-            return ResponseEntity.ok(categoriaActualizada);
+            return ResponseEntity.ok(assembler.toModel(categoriaActualizada));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (IllegalStateException e) {

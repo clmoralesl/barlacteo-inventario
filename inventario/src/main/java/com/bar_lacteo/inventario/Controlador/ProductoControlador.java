@@ -9,12 +9,13 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import com.bar_lacteo.inventario.Assembler.ProductoModeloAssembler;
 import com.bar_lacteo.inventario.DTO.ProductoDTO;
 import com.bar_lacteo.inventario.Modelo.Producto;
-import com.bar_lacteo.inventario.Producto.ProductoModeloAssembler;
 import com.bar_lacteo.inventario.Repositorio.ProductoRepositorio;
 import com.bar_lacteo.inventario.Servicio.ProductoServicio;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 
@@ -22,7 +23,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
+@Tag(name = "Producto", description = "Controlador para gestionar productos del inventario")
 @RestController
 @RequestMapping("/api/producto")
 public class ProductoControlador {
@@ -44,7 +45,7 @@ public class ProductoControlador {
         return productoRepositorio.findAll();
     }
 
-    @GetMapping("/listar_alt")
+    @GetMapping("/v2/listar")
     public CollectionModel<EntityModel<ProductoDTO>> listarProductos() {
         List<EntityModel<ProductoDTO>> productos = productoServicio.listarProductos().stream()
                 .map(assembler::toModel)
@@ -59,7 +60,7 @@ public class ProductoControlador {
         return productoServicio.listarProductos();
     }
      
-    @GetMapping("/stock_bajo_alt")
+    @GetMapping("/v2/stock_bajo")
     public CollectionModel<EntityModel<ProductoDTO>> productoStockBajo() {
         List<EntityModel<ProductoDTO>> productos = productoServicio.productoBajoStock().stream()
                 .map(assembler::toModel)
