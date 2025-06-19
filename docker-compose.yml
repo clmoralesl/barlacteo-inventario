@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  app:
+    image: inventario:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://barlacteo_mysql:3306/barlacteo_db?autoReconnect=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      - SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION=true
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+      - SPRING_SQL_INIT_MODE=always
+      - SPRING_SQL_INIT_PLATFORM=mysql
+      - SPRING_APPLICATION_NAME=inventario
+    depends_on:
+      - mysql
+    networks:
+      - mysql-network  
+  mysql:
+    image: mysql:8.0
+    container_name: barlacteo_mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=barlacteo_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=1234
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uuser", "-p1234"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+networks:
+  mysql-network:
+    name: db_app-network
+    external: true
