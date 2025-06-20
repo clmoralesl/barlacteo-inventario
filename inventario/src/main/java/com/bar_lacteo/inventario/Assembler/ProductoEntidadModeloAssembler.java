@@ -18,9 +18,9 @@ public class ProductoEntidadModeloAssembler implements RepresentationModelAssemb
     public EntityModel<Producto> toModel(@NonNull Producto producto) {
         return EntityModel.of(producto,
                 linkTo(methodOn(ProductoControlador.class).obtenerProductoPorCodigo(producto.getCodigoBarra())).withSelfRel(),
-                linkTo(methodOn(ProductoControlador.class).mostrarProductos()).withRel("todos"),
-                linkTo(methodOn(ProductoControlador.class).modificarProducto(producto.getCodigoBarra(), producto)).withRel("modificar"),
-                linkTo(methodOn(ProductoControlador.class).eliminarProducto(producto.getCodigoBarra())).withRel("eliminar")
+                linkTo(methodOn(ProductoControlador.class).mostrarProductos()).withRel("Lista de productos"),
+                linkTo(methodOn(ProductoControlador.class).modificarProducto(producto.getCodigoBarra(), producto)).withRel("Modificar"),
+                linkTo(methodOn(ProductoControlador.class).eliminarProducto(producto.getCodigoBarra())).withRel("Eliminar")
         );
     }
 }

@@ -23,11 +23,8 @@ public class ProveedorServicio {
         return repository.findAll();
     }
 
-    /*public Proveedor guardar(Proveedor proveedor) {
-        return repository.save(proveedor);
-    }*/
     public Proveedor guardar(Proveedor proveedor) {
-        // Limpiar espacios en los campos de tipo String
+   
         proveedor.setNombreProveedor(proveedor.getNombreProveedor().trim());
         proveedor.setEmailProveedor(proveedor.getEmailProveedor().trim());
         proveedor.setDireccionProveedor(proveedor.getDireccionProveedor().trim());
@@ -53,4 +50,24 @@ public class ProveedorServicio {
     public void eliminar(Long id) {
         repository.deleteById(id);
     }
+    
+    public Proveedor buscarPorRut(Integer rutProveedor) {
+        return repository.findByRutProveedor(rutProveedor)
+            .orElseThrow(() -> new IllegalArgumentException("Proveedor no encontrado con RUT: " + rutProveedor));
+    }
+
+    public Proveedor actualizar(Long id, Proveedor proveedorActualizado) {
+    Proveedor existente = repository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Proveedor no encontrado con ID: " + id));
+
+    existente.setRutProveedor(proveedorActualizado.getRutProveedor());
+    existente.setDvProveedor(proveedorActualizado.getDvProveedor());
+    existente.setNombreProveedor(proveedorActualizado.getNombreProveedor());
+    existente.setTelefonoProveedor(proveedorActualizado.getTelefonoProveedor());
+    existente.setEmailProveedor(proveedorActualizado.getEmailProveedor());
+    existente.setDireccionProveedor(proveedorActualizado.getDireccionProveedor());
+
+    return repository.save(existente);
+}
+
 }

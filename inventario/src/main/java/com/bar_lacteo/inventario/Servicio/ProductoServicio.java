@@ -83,4 +83,26 @@ public class ProductoServicio {
         return productoRepositorio.save(productoExistente);
     }
 
+    public List<ProductoDTO> buscarPorNombreParcialNativo(String nombre) {
+        String parametro = "%" + nombre + "%";
+        List<Object[]> resultados = productoRepositorio.buscarPorNombreParcial(parametro);
+
+        List<ProductoDTO> productosDTO = new ArrayList<>();
+        for (Object[] fila : resultados) {
+            Integer stockActual = ((BigDecimal) fila[3]).intValue();
+            ProductoDTO dto = new ProductoDTO(
+                    (Integer) fila[0],          
+                    (String) fila[1],           
+                    (Integer) fila[2],          
+                    stockActual,                
+                    (Integer) fila[4],           
+                    (String) fila[5]             
+            );
+            productosDTO.add(dto);
+        }
+
+        return productosDTO;
+    }
+
+
 }

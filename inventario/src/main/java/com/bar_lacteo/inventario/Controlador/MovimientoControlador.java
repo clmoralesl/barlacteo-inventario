@@ -19,7 +19,6 @@ import com.bar_lacteo.inventario.Modelo.Movimiento;
 import com.bar_lacteo.inventario.Repositorio.MovimientoRepositorio;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Movimiento", description = "Controlador para gestionar movimientos de inventario")
 @RestController
 @RequestMapping ("/api/movimiento")
 public class MovimientoControlador {

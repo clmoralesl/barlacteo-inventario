@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.bar_lacteo.inventario.Modelo.Producto;
 
@@ -16,7 +17,8 @@ public interface ProductoRepositorio extends JpaRepository<Producto,Integer> {
     Optional<Producto>findByCodigoBarra(Integer codigoBarra);
     boolean existsByCategoriaIdCategoria(Integer idCategoria);
     void deleteByCodigoBarra(Integer codigoBarra);
-@Query(value = """
+    List<Producto> findByNombreProductoContainingIgnoreCase(String nombreProducto);
+    @Query(value = """
     SELECT 
         p.cod_barra, 
         p.nombre_producto, 
@@ -48,4 +50,22 @@ public interface ProductoRepositorio extends JpaRepository<Producto,Integer> {
     ORDER BY p.cod_barra
     """, nativeQuery = true)
     List<Object[]> productosStockBajo();
+
+    @Query(value = """
+    SELECT 
+        p.cod_barra, 
+        p.nombre_producto, 
+        p.precio_unitario AS precio,
+        COALESCE(SUM(l.stock_lote),0) AS stock_actual, 
+        p.stock_min, 
+        c.nombre_categoria AS categoria
+    FROM producto p 
+    LEFT JOIN lote l ON p.cod_barra = l.cod_barra 
+    JOIN categoria c ON p.id_categoria = c.id_categoria 
+    WHERE p.nombre_producto LIKE :nombreProducto
+    GROUP BY p.cod_barra, p.nombre_producto, p.precio_unitario, p.stock_min, c.nombre_categoria 
+    ORDER BY p.cod_barra
+    """, nativeQuery = true)
+    List<Object[]> buscarPorNombreParcial(@Param("nombreProducto") String nombreProducto);
+    
 }

@@ -132,6 +132,20 @@ public class ProductoControlador {
         }
     }
 
+
+    @GetMapping("/buscar-nombre")
+    public CollectionModel<EntityModel<ProductoDTO>> buscarPorNombreNativo(@RequestParam String nombre) {
+        List<ProductoDTO> encontrados = productoServicio.buscarPorNombreParcialNativo(nombre);
+
+        List<EntityModel<ProductoDTO>> productos = encontrados.stream()
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(productos,
+                linkTo(methodOn(ProductoControlador.class).buscarPorNombreNativo(nombre)).withSelfRel());
+    }
+
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();

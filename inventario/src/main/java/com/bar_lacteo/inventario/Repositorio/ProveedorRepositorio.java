@@ -9,6 +9,7 @@ import com.bar_lacteo.inventario.Modelo.Proveedor;
 public interface ProveedorRepositorio extends JpaRepository<Proveedor, Long> {
     Optional<Proveedor> findByRutProveedorAndDvProveedor(Integer rutProveedor, String dvProveedor);
     Optional<Proveedor> findByEmailProveedor(String emailProveedor);
+    Optional<Proveedor> findByRutProveedor(Integer rutProveedor);
 
 }
 

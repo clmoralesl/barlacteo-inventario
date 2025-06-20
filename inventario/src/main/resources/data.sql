@@ -23,7 +23,9 @@ INSERT INTO producto (cod_barra, nombre_producto, descripcion, precio_unitario, 
 (7001, 'Mix de Frutos Secos 150g', 'Almendras, nueces y pasas', 2100, 20, 7),
 (7002, 'Barra de Cereal Avena y Miel', 'Barra energética individual', 600, 30, 7),
 (1003, 'Leche Descremada 1L', 'Leche fluida descremada Larga Vida', 990, 50, 1),
-(2003, 'Agua Purificada Sin Gas 500ml', 'Botella de agua purificada', 600, 40, 2);
+(2003, 'Agua Purificada Sin Gas 500ml', 'Botella de agua purificada', 600, 40, 2),
+(1004, 'Leche Entera 1L', 'Leche fluida entera Larga Vida Colun, 1 litro', 950, 60, 1),
+(1005, 'Leche Semidescremada 1L', 'Leche fluida semidescremada Soprole, 1 litro', 970, 70, 1);
 
 INSERT INTO proveedor (rut_proveedor, dv_proveedor, nombre_proveedor, telefono_proveedor, email_proveedor, direccion_proveedor) VALUES
 (76543210, '7', 'Distribuidora Dulce Sabor', '987123456', 'ventas@dulcesabor.cl', 'Calle Los Dulces 789, Valparaíso'),
