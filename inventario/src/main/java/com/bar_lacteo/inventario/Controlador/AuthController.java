@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.bar_lacteo.inventario.Autenticacion.JwtUtil;
 import com.bar_lacteo.inventario.Autenticacion.UserDetailServiceImpl;
-import com.bar_lacteo.inventario.Usuario.UsuarioRepositorio;
-
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Login")
@@ -28,8 +26,6 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @Autowired
-    private UsuarioRepositorio usuarioRepositorio;
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequest authRequest) throws Exception {

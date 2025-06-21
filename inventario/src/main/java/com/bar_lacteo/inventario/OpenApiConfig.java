@@ -16,9 +16,9 @@ public class OpenApiConfig {
 
         return new OpenAPI()
                 .info(new Info()
-                        .title("Documentación de mi API")
+                        .title("Documentación API de Inventario para Barlacteo")
                         .version("1.0")
-                        .description("Prueba con token JWT"))
+                        .description("Prueba de endpoints mediante autorización JWT"))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(
                         new io.swagger.v3.oas.models.Components()

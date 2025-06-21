@@ -16,7 +16,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.bar_lacteo.inventario.Modelo.Categoria;
 import com.bar_lacteo.inventario.Repositorio.CategoriaRepositorio;
 import com.bar_lacteo.inventario.Repositorio.ProductoRepositorio;
-import com.bar_lacteo.inventario.Servicio.CategoriaServicio;
 
 @SpringBootTest
 public class CategoriaServicioTest {
