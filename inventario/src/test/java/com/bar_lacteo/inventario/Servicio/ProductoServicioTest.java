@@ -1,8 +1,7 @@
-package com.bar_lacteo.inventario.Test;
+package com.bar_lacteo.inventario.Servicio;
 
 import com.bar_lacteo.inventario.Modelo.Producto;
 import com.bar_lacteo.inventario.Repositorio.ProductoRepositorio;
-import com.bar_lacteo.inventario.Servicio.ProductoServicio;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
