@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/api/proveedores")
+@RequestMapping("/api/proveedor")
 public class ProveedorControlador {
 
     private final ProveedorServicio service;
@@ -38,10 +38,7 @@ public class ProveedorControlador {
         return service.listar();
     }
 
-   /*  @PostMapping
-    public Proveedor guardar(@RequestBody Proveedor proveedor) {
-        return service.guardar(proveedor);
-    }*/
+
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Proveedor proveedor) {
     try {

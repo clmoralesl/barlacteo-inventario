@@ -61,121 +61,104 @@ INSERT INTO tipo_movimiento (descripcion_Tipo_Movimiento, es_entrada) VALUES
 ('Entrada por Traslado/Transferencia', TRUE);
 
 INSERT INTO movimiento (id_usuario, unidades, motivo, cod_barra, id_tipo_movimiento, id_lote, id_ubicacion, fecha_movimiento) VALUES
-(1, 5, NULL, 1001, 2, 1, NULL, CURRENT_TIMESTAMP), -- Leche Chocolate, Lote ID 1
-(1, 3, NULL, 3001, 2, 2, NULL, CURRENT_TIMESTAMP), -- Galletas Chocolate, Lote ID 2
-(1, 2, NULL, 2001, 2, 4, NULL, CURRENT_TIMESTAMP), -- Agua Mineral, Lote ID 4
-(1, 1, NULL, 2002, 2, 4, NULL, CURRENT_TIMESTAMP), -- Bebida Coca-Cola (Using Lote ID 4 as a shared lot if applicable, or assign a specific one if 2002 has its own)
-(1, 4, NULL, 3001, 2, 2, NULL, CURRENT_TIMESTAMP), -- Galletas Chocolate, Lote ID 2
-(1, 2, NULL, 3002, 2, 15, NULL, CURRENT_TIMESTAMP), -- Galletas Frac, Lote ID 15
-(1, 1, NULL, 4001, 2, 3, NULL, CURRENT_TIMESTAMP), -- Néctar Multi-Frutilla (Using Lote ID 3 as a shared lot if applicable)
-(1, 2, NULL, 4002, 2, 3, NULL, CURRENT_TIMESTAMP), -- Jugo Manzana Ciruela, Lote ID 3
-(1, 3, NULL, 5001, 2, 6, NULL, CURRENT_TIMESTAMP), -- Pan Integral, Lote ID 6
-(1, 1, NULL, 5002, 2, 7, NULL, CURRENT_TIMESTAMP), -- Baguette, Lote ID 7
-(1, 2, NULL, 6001, 2, 8, NULL, CURRENT_TIMESTAMP), -- Helado Vainilla, Lote ID 8
-(1, 4, NULL, 6002, 2, 9, NULL, CURRENT_TIMESTAMP), -- Papas Fritas Congeladas, Lote ID 9
-(1, 5, NULL, 7001, 2, 10, NULL, CURRENT_TIMESTAMP), -- Mix de Frutos Secos, Lote ID 10
-(1, 6, NULL, 7002, 2, 11, NULL, CURRENT_TIMESTAMP), -- Barra de Cereal, Lote ID 11
-(1, 2, NULL, 1003, 2, 12, NULL, CURRENT_TIMESTAMP), -- Leche Descremada, Lote ID 12
-(1, 3, NULL, 2003, 2, 13, NULL, CURRENT_TIMESTAMP), -- Agua Purificada, Lote ID 13
-(1, 7, NULL, 1001, 2, 14, NULL, CURRENT_TIMESTAMP), -- Leche Chocolate, Lote ID 14
-(1, 4, NULL, 3001, 2, 2, NULL, CURRENT_TIMESTAMP), -- Galletas Chocolate, Lote ID 2
-(1, 3, NULL, 2001, 2, 5, NULL, CURRENT_TIMESTAMP), -- Agua Mineral, Lote ID 5
-(1, 2, NULL, 2002, 2, 4, NULL, CURRENT_TIMESTAMP), -- Bebida Coca-Cola
-(1, 5, NULL, 3001, 2, 2, NULL, CURRENT_TIMESTAMP), -- Galletas Chocolate, Lote ID 2
-(1, 3, NULL, 3002, 2, 15, NULL, CURRENT_TIMESTAMP), -- Galletas Frac, Lote ID 15
-(1, 2, NULL, 4001, 2, 3, NULL, CURRENT_TIMESTAMP), -- Néctar Multi-Frutilla
-(1, 1, NULL, 4002, 2, 3, NULL, CURRENT_TIMESTAMP), -- Jugo Manzana Ciruela, Lote ID 3
-(1, 4, NULL, 5001, 2, 6, NULL, CURRENT_TIMESTAMP), -- Pan Integral, Lote ID 6
-(1, 2, NULL, 5002, 2, 7, NULL, CURRENT_TIMESTAMP), -- Baguette, Lote ID 7
-(1, 3, NULL, 6001, 2, 8, NULL, CURRENT_TIMESTAMP), -- Helado Vainilla, Lote ID 8
-(1, 5, NULL, 6002, 2, 9, NULL, CURRENT_TIMESTAMP), -- Papas Fritas Congeladas, Lote ID 9
-(1, 6, NULL, 7001, 2, 10, NULL, CURRENT_TIMESTAMP), -- Mix de Frutos Secos, Lote ID 10
-(1, 7, NULL, 7002, 2, 11, NULL, CURRENT_TIMESTAMP), -- Barra de Cereal, Lote ID 11
-(1, 3, NULL, 1003, 2, 12, NULL, CURRENT_TIMESTAMP), -- Leche Descremada, Lote ID 12
-(1, 4, NULL, 2003, 2, 13, NULL, CURRENT_TIMESTAMP), -- Agua Purificada, Lote ID 13
-(1, 8, NULL, 1001, 2, 1, NULL, CURRENT_TIMESTAMP), -- Leche Chocolate, Lote ID 1
-(1, 5, NULL, 3001, 2, 2, NULL, CURRENT_TIMESTAMP), -- Galletas Chocolate, Lote ID 2
-(1, 4, NULL, 2001, 2, 4, NULL, CURRENT_TIMESTAMP), -- Agua Mineral, Lote ID 4
-(1, 3, NULL, 2002, 2, 5, NULL, CURRENT_TIMESTAMP), -- Bebida Coca-Cola (Using Lote ID 5 as a shared lot if applicable)
-(1, 6, NULL, 3001, 2, 2, NULL, CURRENT_TIMESTAMP), -- Galletas Chocolate, Lote ID 2
-(1, 4, NULL, 3002, 2, 15, NULL, CURRENT_TIMESTAMP), -- Galletas Frac, Lote ID 15
-(1, 3, NULL, 4001, 2, 3, NULL, CURRENT_TIMESTAMP), -- Néctar Multi-Frutilla
-(1, 2, NULL, 4002, 2, 3, NULL, CURRENT_TIMESTAMP), -- Jugo Manzana Ciruela, Lote ID 3
-(1, 5, NULL, 5001, 2, 6, NULL, CURRENT_TIMESTAMP), -- Pan Integral, Lote ID 6
-(1, 3, NULL, 5002, 2, 7, NULL, CURRENT_TIMESTAMP), -- Baguette, Lote ID 7
-(1, 4, NULL, 6001, 2, 8, NULL, CURRENT_TIMESTAMP), -- Helado Vainilla, Lote ID 8
-(1, 6, NULL, 6002, 2, 9, NULL, CURRENT_TIMESTAMP), -- Papas Fritas Congeladas, Lote ID 9
-(1, 7, NULL, 7001, 2, 10, NULL, CURRENT_TIMESTAMP), -- Mix de Frutos Secos, Lote ID 10
-(1, 8, NULL, 7002, 2, 11, NULL, CURRENT_TIMESTAMP), -- Barra de Cereal, Lote ID 11
-(1, 4, NULL, 1003, 2, 12, NULL, CURRENT_TIMESTAMP), -- Leche Descremada, Lote ID 12
-(1, 5, NULL, 2003, 2, 13, NULL, CURRENT_TIMESTAMP), -- Agua Purificada, Lote ID 13
-(1, 9, NULL, 1001, 2, 14, NULL, CURRENT_TIMESTAMP), -- Leche Chocolate, Lote ID 14
-(1, 6, NULL, 3001, 2, 2, NULL, CURRENT_TIMESTAMP); -- Galletas Chocolate, Lote ID 2
-INSERT INTO movimiento (id_usuario, unidades, motivo, cod_barra, id_tipo_movimiento, id_lote, id_ubicacion, fecha_movimiento) VALUES
--- --- Entrada por Compra (id_tipo_movimiento = 1) ---
-(1, 50, 'Nueva compra a Distribuidora Dulce Sabor', 1001, 1, 1, NULL, CURRENT_TIMESTAMP),
-(1, 30, 'Reabastecimiento de Panadería', 5001, 1, 6, NULL, CURRENT_TIMESTAMP),
-(1, 20, 'Compra semanal de congelados', 6001, 1, 8, NULL, CURRENT_TIMESTAMP),
-(1, 40, 'Reposición de Jugos Del Valle', 4001, 1, 3, NULL, CURRENT_TIMESTAMP),
-(1, 25, 'Entrega de Lácteos', 1003, 1, 12, NULL, CURRENT_TIMESTAMP),
-(1, 60, 'Nueva adquisición de snacks', 7001, 1, 10, NULL, CURRENT_TIMESTAMP),
-(1, 35, 'Compra de Agua Mineral', 2001, 1, 4, NULL, CURRENT_TIMESTAMP),
-(1, 20, 'Reabastecimiento de Galletas', 3001, 1, 2, NULL, CURRENT_TIMESTAMP),
-(1, 45, 'Nuevo pedido de Bebidas', 2002, 1, 4, NULL, CURRENT_TIMESTAMP),
-(1, 15, 'Compra de Leche Chocolate Adicional', 1001, 1, 14, NULL, CURRENT_TIMESTAMP),
-
--- --- Salida por Devolución a Proveedor (id_tipo_movimiento = 3) ---
-(1, 5, 'Lote 101 defectuoso', 1001, 3, 1, NULL, CURRENT_TIMESTAMP),
-(1, 2, 'Producto equivocado', 5002, 3, 7, NULL, CURRENT_TIMESTAMP),
-(1, 3, 'Vencimiento próximo, devolución anticipada', 6002, 3, 9, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Envase dañado', 4002, 3, 3, NULL, CURRENT_TIMESTAMP),
-(1, 4, 'Exceso de stock no vendible', 7002, 3, 11, NULL, CURRENT_TIMESTAMP),
-
--- --- Salida por Merma/Desperdicio (id_tipo_movimiento = 4) ---
-(1, 1, 'Producto vencido', 1002, 4, 2, NULL, CURRENT_TIMESTAMP),
-(1, 2, 'Paquetes rotos', 3002, 4, 15, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Helado derretido por corte de luz', 6001, 4, 8, NULL, CURRENT_TIMESTAMP),
-(1, 3, 'Pan quemado', 5001, 4, 6, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Bebida con fuga', 2003, 4, 13, NULL, CURRENT_TIMESTAMP),
-(1, 2, 'Merma por manipulación', 7001, 4, 10, NULL, CURRENT_TIMESTAMP),
-
--- --- Entrada por Ajuste de Inventario (id_tipo_movimiento = 5) ---
-(1, 3, 'Conteo físico: se encontraron más unidades', 1001, 5, 14, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Reubicación de stock perdido', 2001, 5, 5, NULL, CURRENT_TIMESTAMP),
-(1, 2, 'Corrección de registro de entrada anterior', 3001, 5, 2, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Unidad extra encontrada en bodega', 4002, 5, 3, NULL, CURRENT_TIMESTAMP),
-(1, 2, 'Inventario inicial faltante', 5002, 5, 7, NULL, CURRENT_TIMESTAMP),
-
--- --- Salida por Ajuste de Inventario (id_tipo_movimiento = 6) ---
-(1, 2, 'Conteo físico: faltan unidades', 1003, 6, 12, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Unidad perdida sin explicación', 2002, 6, 4, NULL, CURRENT_TIMESTAMP),
-(1, 3, 'Error en despacho anterior', 6002, 6, 9, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Merma no registrada previamente', 7002, 6, 11, NULL, CURRENT_TIMESTAMP),
-(1, 2, 'Discrepancia de inventario', 1001, 6, 1, NULL, CURRENT_TIMESTAMP),
-
--- --- Salida por Traslado/Transferencia (id_tipo_movimiento = 7) ---
-(1, 10, 'Traslado a vitrina frontal', 1001, 7, 1, NULL, CURRENT_TIMESTAMP),
-(1, 5, 'Envío a otra sucursal (demo)', 3001, 7, 2, NULL, CURRENT_TIMESTAMP),
-(1, 3, 'Movido a almacén de descontinuados', 2001, 7, 4, NULL, CURRENT_TIMESTAMP),
-(1, 8, 'Para degustación en punto de venta', 7001, 7, 10, NULL, CURRENT_TIMESTAMP),
-(1, 4, 'Traslado a estantería de ofertas', 4001, 7, 3, NULL, CURRENT_TIMESTAMP),
-
--- --- Entrada por Traslado/Transferencia (id_tipo_movimiento = 8) ---
-(1, 10, 'Devolución de vitrina frontal', 1001, 8, 1, NULL, CURRENT_TIMESTAMP),
-(1, 5, 'Retorno de otra sucursal', 3001, 8, 2, NULL, CURRENT_TIMESTAMP),
-(1, 3, 'Recuperado de almacén secundario', 2001, 8, 4, NULL, CURRENT_TIMESTAMP),
-(1, 8, 'Sobras de degustación devueltas', 7001, 8, 10, NULL, CURRENT_TIMESTAMP),
-(1, 4, 'Retorno de estantería de ofertas', 4001, 8, 3, NULL, CURRENT_TIMESTAMP),
-
--- --- More Mixed Movements to reach 50 ---
-(1, 7, 'Nueva compra bebidas', 2003, 1, 13, NULL, CURRENT_TIMESTAMP),
-(1, 2, 'Merma por producto caducado', 1001, 4, 14, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Ajuste por conteo incorrecto', 3002, 6, 15, NULL, CURRENT_TIMESTAMP),
-(1, 5, 'Reingreso de panadería de exhibición', 5001, 8, 6, NULL, CURRENT_TIMESTAMP),
-(1, 15, 'Gran compra de lácteos', 1003, 1, 12, NULL, CURRENT_TIMESTAMP),
-(1, 3, 'Devolución a proveedor por lote fallido', 6001, 3, 8, NULL, CURRENT_TIMESTAMP),
-(1, 2, 'Unidad de congelado dañada', 6002, 4, 9, NULL, CURRENT_TIMESTAMP),
-(1, 10, 'Traslado a promoción', 7001, 7, 10, NULL, CURRENT_TIMESTAMP),
-(1, 4, 'Ajuste de inventario encontrado', 2001, 5, 5, NULL, CURRENT_TIMESTAMP),
-(1, 1, 'Error de sistema en stock', 2002, 6, 4, NULL, CURRENT_TIMESTAMP)
-;
+(1, 5, NULL, 1001, 2, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 08:45:00'), '%Y-%m-%d %H:%i:%s')), -- Leche Chocolate, Lote ID 1
+(1, 3, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 10:30:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Chocolate, Lote ID 2
+(1, 2, NULL, 2001, 2, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 12 DAY), '%Y-%m-%d 14:15:00'), '%Y-%m-%d %H:%i:%s')), -- Agua Mineral, Lote ID 4
+(1, 1, NULL, 2002, 2, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 09:20:00'), '%Y-%m-%d %H:%i:%s')), -- Bebida Coca-Cola
+(1, 4, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 10 DAY), '%Y-%m-%d 16:50:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Chocolate, Lote ID 2
+(1, 2, NULL, 3002, 2, 15, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 17 DAY), '%Y-%m-%d 11:10:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Frac, Lote ID 15
+(1, 1, NULL, 4001, 2, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 DAY), '%Y-%m-%d 13:25:00'), '%Y-%m-%d %H:%i:%s')), -- Néctar Multi-Frutilla
+(1, 2, NULL, 4002, 2, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 14 DAY), '%Y-%m-%d 15:40:00'), '%Y-%m-%d %H:%i:%s')), -- Jugo Manzana Ciruela, Lote ID 3
+(1, 3, NULL, 5001, 2, 6, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 12:00:00'), '%Y-%m-%d %H:%i:%s')), -- Pan Integral, Lote ID 6
+(1, 1, NULL, 5002, 2, 7, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 17:30:00'), '%Y-%m-%d %H:%i:%s')), -- Baguette, Lote ID 7
+(1, 2, NULL, 6001, 2, 8, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 09:50:00'), '%Y-%m-%d %H:%i:%s')), -- Helado Vainilla, Lote ID 8
+(1, 4, NULL, 6002, 2, 9, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 18:20:00'), '%Y-%m-%d %H:%i:%s')), -- Papas Fritas Congeladas, Lote ID 9
+(1, 5, NULL, 7001, 2, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 08:10:00'), '%Y-%m-%d %H:%i:%s')), -- Mix de Frutos Secos, Lote ID 10
+(1, 6, NULL, 7002, 2, 11, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 20:15:00'), '%Y-%m-%d %H:%i:%s')), -- Barra de Cereal, Lote ID 11
+(1, 2, NULL, 1003, 2, 12, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 13 DAY), '%Y-%m-%d 10:45:00'), '%Y-%m-%d %H:%i:%s')), -- Leche Descremada, Lote ID 12
+(1, 3, NULL, 2003, 2, 13, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 16 DAY), '%Y-%m-%d 14:30:00'), '%Y-%m-%d %H:%i:%s')), -- Agua Purificada, Lote ID 13
+(1, 7, NULL, 1001, 2, 14, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 DAY), '%Y-%m-%d 16:00:00'), '%Y-%m-%d %H:%i:%s')), -- Leche Chocolate, Lote ID 14
+(1, 4, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 11:55:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Chocolate, Lote ID 2
+(1, 3, NULL, 2001, 2, 5, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 15 DAY), '%Y-%m-%d 13:10:00'), '%Y-%m-%d %H:%i:%s')), -- Agua Mineral, Lote ID 5
+(1, 2, NULL, 2002, 2, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 19:25:00'), '%Y-%m-%d %H:%i:%s')), -- Bebida Coca-Cola
+(1, 5, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 10 DAY), '%Y-%m-%d 08:30:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Chocolate, Lote ID 2
+(1, 3, NULL, 3002, 2, 15, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 12 DAY), '%Y-%m-%d 17:45:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Frac, Lote ID 15
+(1, 2, NULL, 4001, 2, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 12:20:00'), '%Y-%m-%d %H:%i:%s')), -- Néctar Multi-Frutilla
+(1, 1, NULL, 4002, 2, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 15:15:00'), '%Y-%m-%d %H:%i:%s')), -- Jugo Manzana Ciruela, Lote ID 3
+(1, 4, NULL, 5001, 2, 6, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 09:40:00'), '%Y-%m-%d %H:%i:%s')), -- Pan Integral, Lote ID 6
+(1, 2, NULL, 5002, 2, 7, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 18:00:00'), '%Y-%m-%d %H:%i:%s')), -- Baguette, Lote ID 7
+(1, 3, NULL, 6001, 2, 8, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 11:30:00'), '%Y-%m-%d %H:%i:%s')), -- Helado Vainilla, Lote ID 8
+(1, 5, NULL, 6002, 2, 9, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 20:30:00'), '%Y-%m-%d %H:%i:%s')), -- Papas Fritas Congeladas, Lote ID 9
+(1, 6, NULL, 7001, 2, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 08:20:00'), '%Y-%m-%d %H:%i:%s')), -- Mix de Frutos Secos, Lote ID 10
+(1, 7, NULL, 7002, 2, 11, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 13 DAY), '%Y-%m-%d 14:45:00'), '%Y-%m-%d %H:%i:%s')), -- Barra de Cereal, Lote ID 11
+(1, 3, NULL, 1003, 2, 12, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 10:15:00'), '%Y-%m-%d %H:%i:%s')), -- Leche Descremada, Lote ID 12
+(1, 4, NULL, 2003, 2, 13, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 16:10:00'), '%Y-%m-%d %H:%i:%s')), -- Agua Purificada, Lote ID 13
+(1, 8, NULL, 1001, 2, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 12:50:00'), '%Y-%m-%d %H:%i:%s')), -- Leche Chocolate, Lote ID 1
+(1, 5, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 09:25:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Chocolate, Lote ID 2
+(1, 4, NULL, 2001, 2, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 18 DAY), '%Y-%m-%d 17:20:00'), '%Y-%m-%d %H:%i:%s')), -- Agua Mineral, Lote ID 4
+(1, 3, NULL, 2002, 2, 5, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 13:35:00'), '%Y-%m-%d %H:%i:%s')), -- Bebida Coca-Cola
+(1, 6, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 10 DAY), '%Y-%m-%d 08:55:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Chocolate, Lote ID 2
+(1, 4, NULL, 3002, 2, 15, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 12 DAY), '%Y-%m-%d 19:10:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Frac, Lote ID 15
+(1, 3, NULL, 4001, 2, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 11:45:00'), '%Y-%m-%d %H:%i:%s')), -- Néctar Multi-Frutilla
+(1, 2, NULL, 4002, 2, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 15:50:00'), '%Y-%m-%d %H:%i:%s')), -- Jugo Manzana Ciruela, Lote ID 3
+(1, 5, NULL, 5001, 2, 6, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 10:20:00'), '%Y-%m-%d %H:%i:%s')), -- Pan Integral, Lote ID 6
+(1, 3, NULL, 5002, 2, 7, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 18:30:00'), '%Y-%m-%d %H:%i:%s')), -- Baguette, Lote ID 7
+(1, 4, NULL, 6001, 2, 8, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 12:15:00'), '%Y-%m-%d %H:%i:%s')), -- Helado Vainilla, Lote ID 8
+(1, 6, NULL, 6002, 2, 9, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 20:45:00'), '%Y-%m-%d %H:%i:%s')), -- Papas Fritas Congeladas, Lote ID 9
+(1, 7, NULL, 7001, 2, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 08:40:00'), '%Y-%m-%d %H:%i:%s')), -- Mix de Frutos Secos, Lote ID 10
+(1, 8, NULL, 7002, 2, 11, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 13 DAY), '%Y-%m-%d 14:25:00'), '%Y-%m-%d %H:%i:%s')), -- Barra de Cereal, Lote ID 11
+(1, 4, NULL, 1003, 2, 12, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 10:50:00'), '%Y-%m-%d %H:%i:%s')), -- Leche Descremada, Lote ID 12
+(1, 5, NULL, 2003, 2, 13, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 16:35:00'), '%Y-%m-%d %H:%i:%s')), -- Agua Purificada, Lote ID 13
+(1, 9, NULL, 1001, 2, 14, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 DAY), '%Y-%m-%d 12:40:00'), '%Y-%m-%d %H:%i:%s')), -- Leche Chocolate, Lote ID 14
+(1, 6, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 10 DAY), '%Y-%m-%d 09:15:00'), '%Y-%m-%d %H:%i:%s')), -- Galletas Chocolate, Lote ID 2
+(1, 50, 'Nueva compra a Distribuidora Dulce Sabor', 1001, 1, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 08:00:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 30, 'Reabastecimiento de Panadería', 5001, 1, 6, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 09:15:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 20, 'Compra semanal de congelados', 6001, 1, 8, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 11:30:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 40, 'Reposición de Jugos Del Valle', 4001, 1, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 13:45:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 25, 'Entrega de Lácteos', 1003, 1, 12, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 12 DAY), '%Y-%m-%d 15:00:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 60, 'Nueva adquisición de snacks', 7001, 1, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 17:15:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 35, 'Compra de Agua Mineral', 2001, 1, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 19:30:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 20, 'Reabastecimiento de Galletas', 3001, 1, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 08:25:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 45, 'Nuevo pedido de Bebidas', 2002, 1, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 10:40:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 15, 'Compra de Leche Chocolate Adicional', 1001, 1, 14, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 12:55:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 5, 'Lote 101 defectuoso', 1001, 3, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 13 DAY), '%Y-%m-%d 14:20:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Devolución
+(1, 2, 'Producto equivocado', 5002, 3, 7, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 16:35:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Devolución
+(1, 3, 'Vencimiento próximo, devolución anticipada', 6002, 3, 9, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 18:50:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Devolución
+(1, 1, 'Envase dañado', 4002, 3, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 20:05:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Devolución
+(1, 4, 'Exceso de stock no vendible', 7002, 3, 11, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 08:10:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Devolución
+(1, 1, 'Producto vencido', 1002, 4, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 10 DAY), '%Y-%m-%d 09:35:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Merma
+(1, 2, 'Paquetes rotos', 3002, 4, 15, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 11:50:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Merma
+(1, 1, 'Helado derretido por corte de luz', 6001, 4, 8, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 14:05:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Merma
+(1, 3, 'Pan quemado', 5001, 4, 6, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 16:20:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Merma
+(1, 1, 'Bebida con fuga', 2003, 4, 13, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 12 DAY), '%Y-%m-%d 18:35:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Merma
+(1, 2, 'Merma por manipulación', 7001, 4, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 20:50:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Merma
+(1, 3, 'Conteo físico: se encontraron más unidades', 1001, 5, 14, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 08:45:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Ajuste
+(1, 1, 'Reubicación de stock perdido', 2001, 5, 5, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 10:00:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Ajuste
+(1, 2, 'Corrección de registro de entrada anterior', 3001, 5, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 12:15:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Ajuste
+(1, 1, 'Unidad extra encontrada en bodega', 4002, 5, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 14:30:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Ajuste
+(1, 2, 'Inventario inicial faltante', 5002, 5, 7, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 16:45:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Ajuste
+(1, 2, 'Conteo físico: faltan unidades', 1003, 6, 12, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 19:00:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Ajuste
+(1, 1, 'Unidad perdida sin explicación', 2002, 6, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 08:20:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Ajuste
+(1, 3, 'Error en despacho anterior', 6002, 6, 9, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 10:35:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Ajuste
+(1, 1, 'Merma no registrada previamente', 7002, 6, 11, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 10 DAY), '%Y-%m-%d 12:50:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Ajuste
+(1, 2, 'Discrepancia de inventario', 1001, 6, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 15:05:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Ajuste
+(1, 10, 'Traslado a vitrina frontal', 1001, 7, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 17:20:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Traslado
+(1, 5, 'Envío a otra sucursal (demo)', 3001, 7, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 19:35:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Traslado
+(1, 3, 'Movido a almacén de descontinuados', 2001, 7, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 08:50:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Traslado
+(1, 8, 'Para degustación en punto de venta', 7001, 7, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 11:05:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Traslado
+(1, 4, 'Traslado a estantería de ofertas', 4001, 7, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 12 DAY), '%Y-%m-%d 13:20:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Traslado
+(1, 10, 'Devolución de vitrina frontal', 1001, 8, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 15:35:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Traslado
+(1, 5, 'Retorno de otra sucursal', 3001, 8, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 17:50:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Traslado
+(1, 3, 'Recuperado de almacén secundario', 2001, 8, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 20:05:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Traslado
+(1, 8, 'Sobras de degustación devueltas', 7001, 8, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 08:15:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Traslado
+(1, 4, 'Retorno de estantería de ofertas', 4001, 8, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 10:30:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Traslado
+(1, 7, 'Nueva compra bebidas', 2003, 1, 13, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 12:45:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 2, 'Merma por producto caducado', 1001, 4, 14, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 15:00:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Merma
+(1, 1, 'Ajuste por conteo incorrecto', 3002, 6, 15, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 17:15:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Ajuste
+(1, 5, 'Reingreso de panadería de exhibición', 5001, 8, 6, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 19:30:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Traslado
+(1, 15, 'Gran compra de lácteos', 1003, 1, 12, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 12 DAY), '%Y-%m-%d 08:25:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Compra
+(1, 3, 'Devolución a proveedor por lote fallido', 6001, 3, 8, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 10:40:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Devolución
+(1, 2, 'Unidad de congelado dañada', 6002, 4, 9, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 12:55:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Merma
+(1, 10, 'Traslado a promoción', 7001, 7, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 15:10:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Traslado
+(1, 4, 'Ajuste de inventario encontrado', 2001, 5, 5, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 17:25:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Ajuste
+(1, 1, 'Error de sistema en stock', 2002, 6, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 19:40:00'), '%Y-%m-%d %H:%i:%s')); -- Salida por Ajuste
