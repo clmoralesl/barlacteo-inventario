@@ -1,4 +1,4 @@
-package com.bar_lacteo.inventario.Producto;
+package com.bar_lacteo.inventario.Assembler;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 

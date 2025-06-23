@@ -9,9 +9,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import com.bar_lacteo.inventario.Assembler.ProductoModeloAssembler;
 import com.bar_lacteo.inventario.DTO.ProductoDTO;
 import com.bar_lacteo.inventario.Modelo.Producto;
-import com.bar_lacteo.inventario.Producto.ProductoModeloAssembler;
 import com.bar_lacteo.inventario.Repositorio.ProductoRepositorio;
 import com.bar_lacteo.inventario.Servicio.ProductoServicio;
 
