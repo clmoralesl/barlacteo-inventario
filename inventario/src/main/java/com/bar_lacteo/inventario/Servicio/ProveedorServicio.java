@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.bar_lacteo.inventario.Modelo.Proveedor;
 import com.bar_lacteo.inventario.Repositorio.ProveedorRepositorio;
 
-
-
 @Service
 public class ProveedorServicio {
 
@@ -23,26 +21,23 @@ public class ProveedorServicio {
         return repository.findAll();
     }
 
-    /*public Proveedor guardar(Proveedor proveedor) {
-        return repository.save(proveedor);
-    }*/
     public Proveedor guardar(Proveedor proveedor) {
-        // Limpiar espacios en los campos de tipo String
         proveedor.setNombreProveedor(proveedor.getNombreProveedor().trim());
         proveedor.setEmailProveedor(proveedor.getEmailProveedor().trim());
         proveedor.setDireccionProveedor(proveedor.getDireccionProveedor().trim());
+
         Optional<Proveedor> existente = repository.findByRutProveedorAndDvProveedor(
-            proveedor.getRutProveedor(),
-            proveedor.getDvProveedor()
-        );
-    
+                proveedor.getRutProveedor(),
+                proveedor.getDvProveedor());
+
         if (existente.isPresent()) {
             throw new IllegalStateException("Ya existe un proveedor con ese RUT.");
         }
+
         if (repository.findByEmailProveedor(proveedor.getEmailProveedor()).isPresent()) {
             throw new IllegalStateException("Ya existe un proveedor con ese correo electrónico.");
         }
-    
+
         return repository.save(proveedor);
     }
 
@@ -52,5 +47,19 @@ public class ProveedorServicio {
 
     public void eliminar(Long id) {
         repository.deleteById(id);
+    }
+
+    public Proveedor actualizar(Long id, Proveedor proveedorActualizado) {
+        Proveedor existente = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Proveedor no encontrado con ID: " + id));
+
+        existente.setRutProveedor(proveedorActualizado.getRutProveedor());
+        existente.setDvProveedor(proveedorActualizado.getDvProveedor());
+        existente.setNombreProveedor(proveedorActualizado.getNombreProveedor().trim());
+        existente.setTelefonoProveedor(proveedorActualizado.getTelefonoProveedor());
+        existente.setEmailProveedor(proveedorActualizado.getEmailProveedor().trim());
+        existente.setDireccionProveedor(proveedorActualizado.getDireccionProveedor().trim());
+
+        return repository.save(existente);
     }
 }

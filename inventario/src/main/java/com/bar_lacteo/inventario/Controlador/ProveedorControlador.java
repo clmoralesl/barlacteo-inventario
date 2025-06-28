@@ -8,20 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.bar_lacteo.inventario.Modelo.Proveedor;
 import com.bar_lacteo.inventario.Servicio.ProveedorServicio;
 
 import jakarta.validation.Valid;
-
 
 @RestController
 @RequestMapping("/api/proveedor")
@@ -38,25 +30,46 @@ public class ProveedorControlador {
         return service.listar();
     }
 
-
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody Proveedor proveedor) {
-    try {
-        Proveedor nuevo = service.guardar(proveedor);
-        return ResponseEntity.ok(nuevo);
-    } catch (IllegalStateException e) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        try {
+            Proveedor nuevo = service.guardar(proveedor);
+            return ResponseEntity.ok(nuevo);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
-}
 
     @GetMapping("/{id}")
-    public Proveedor buscar(@PathVariable Long id) {
-        return service.buscarPorId(id);
+    public ResponseEntity<?> buscar(@PathVariable Long id) {
+        Proveedor proveedor = service.buscarPorId(id);
+        if (proveedor == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Proveedor no encontrado");
+        }
+        return ResponseEntity.ok(proveedor);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @Valid @RequestBody Proveedor proveedorActualizado) {
+        try {
+            Proveedor actualizado = service.actualizar(id, proveedorActualizado);
+            return ResponseEntity.ok(actualizado);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
-        service.eliminar(id);
+    public ResponseEntity<String> eliminar(@PathVariable Long id) {
+        try {
+            service.eliminar(id);
+            return ResponseEntity.ok("Proveedor eliminado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al eliminar proveedor: " + e.getMessage());
+        }
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
