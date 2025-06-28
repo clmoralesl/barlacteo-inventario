@@ -1,5 +1,7 @@
 package com.bar_lacteo.inventario.Modelo;
 
+import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -50,7 +52,11 @@ public class Movimiento {
     private Lote lote;
 
     @ManyToOne
-    @JoinColumn (name = "id_ubicacion",  nullable = false)
+    @JoinColumn (name = "id_ubicacion",  nullable = true)
     private Ubicacion ubicacion;
+
+    @Column(name = "fecha_movimiento", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime fechaMovimiento;
 
 }
