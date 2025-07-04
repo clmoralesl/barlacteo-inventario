@@ -45,4 +45,8 @@ public class Lote {
     @JoinColumn(name = "id_proveedor", referencedColumnName = "id")
     private Proveedor proveedor;
 
+    @ManyToOne
+    @JoinColumn(name = "id_ubicacion")
+    private Ubicacion ubicacion;
+
 }

@@ -7,6 +7,11 @@ INSERT INTO categoria (nombre_categoria) VALUES
 ('Congelados'),
 ('Snacks');
 
+INSERT INTO ubicacion(id_ubicacion, descripcion) VALUES
+(1, 'Bodega'),
+(2, 'Mostrador Principal');
+
+
 INSERT INTO producto (cod_barra, nombre_producto, descripcion, precio_unitario, stock_min, id_categoria) VALUES
 (1001, 'Leche Chocolate 200cc ', 'Leche Fluida Semidescremada Chocolate Colun, 200ml', 590, 130, 1),
 (1002, 'Yoghurt Protein Natural 155 g', 'Yoghurt Batido Protein+ Natural Endulzado Soprole, 155g', 650, 150, 1),
@@ -30,22 +35,39 @@ INSERT INTO proveedor (rut_proveedor, dv_proveedor, nombre_proveedor, telefono_p
 (23456789, '2', 'Snacks y Galletas Ltda.', '912678345', 'contacto@snacksygalletas.cl', 'Avenida Colaciones 321, Concepción'),
 (67890123, 'K', 'Importadora de Golosinas', '923456789', 'golosinas@importadora.cl', NULL);
 
-INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor) VALUES
-(1001, 101, 50, '2025-12-31', NULL, 1),
-(3001, 102, 150, '2025-11-15', NULL, 2),
-(4002, 103, 100, '2025-10-10', NULL, 3),
-(2001, 104, 180, '2026-01-20', NULL, 1),
-(2001, 106, 100, '2026-04-20', NULL, 1),
-(5001, 201, 40, '2025-07-20', NULL, 1), -- Pan Integral
-(5002, 202, 30, '2025-07-25', NULL, 1), -- Baguette
-(6001, 203, 25, '2026-06-30', NULL, 2), -- Helado Vainilla
-(6002, 204, 35, '2026-05-15', NULL, 2), -- Papas Fritas
-(7001, 205, 50, '2025-09-01', NULL, 3), -- Mix Frutos Secos
-(7002, 206, 60, '2025-10-01', NULL, 3), -- Barra de Cereal
-(1003, 107, 120, '2025-08-01', NULL, 1), -- Leche Descremada
-(2003, 108, 100, '2026-07-01', NULL, 1), -- Agua Purificada
-(1001, 109, 70, '2025-11-01', NULL, 1), -- Leche Chocolate (additional lot)
-(3002, 110, 80, '2025-12-01', NULL, 2); -- Galletas Frac (additional lot)
+INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor, id_ubicacion) VALUES
+(1001, 101, 50, '2025-12-31', NULL, 1, 1), -- Leche Chocolate 200cc (Bodega)
+(3001, 102, 150, '2025-11-15', NULL, 2, 2), -- Galletas Oreo 108g (Mostrador Principal)
+(4002, 103, 100, '2025-10-10', NULL, 3, 1), -- Jugo Manzana Ciruela 330ml (Bodega)
+(2001, 104, 180, '2026-01-20', NULL, 1, 1), -- Agua Mineral Con Gas 1.6L (Bodega)
+(2001, 106, 100, '2026-04-20', NULL, 1, 2), -- Agua Mineral Con Gas 1.6L (Mostrador Principal)
+(5001, 201, 40, '2025-07-20', NULL, 1, 1), -- Pan Integral 500g (Bodega)
+(5002, 202, 30, '2025-07-25', NULL, 1, 1), -- Baguette 200g (Bodega)
+(6001, 203, 25, '2026-06-30', NULL, 2, 1), -- Helado Vainilla 1L (Bodega)
+(6002, 204, 35, '2026-05-15', NULL, 2, 1), -- Papas Fritas 1kg (Bodega)
+(7001, 205, 50, '2025-09-01', NULL, 3, 2), -- Mix Frutos Secos 150g (Mostrador Principal)
+(7002, 206, 60, '2025-10-01', NULL, 3, 2), -- Barra de Cereal (Mostrador Principal)
+(1003, 107, 120, '2025-08-01', NULL, 1, 1), -- Leche Descremada 1L (Bodega)
+(2003, 108, 100, '2026-07-01', NULL, 1, 2), -- Agua Purificada 500ml (Mostrador Principal)
+(1001, 109, 70, '2025-11-01', NULL, 1, 2), -- Leche Chocolate 200cc (Mostrador Principal)
+(3002, 110, 80, '2025-12-01', NULL, 2, 1); -- Galletas Frac V vainilla 110g (Bodega)
+
+INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orden_compra, id_proveedor, id_ubicacion) VALUES
+(1001, 111, 60, '2025-10-15', NULL, 1, 1), -- Leche Chocolate 200cc (Bodega)
+(1003, 112, 100, '2025-09-01', NULL, 1, 2), -- Leche Descremada 1L (Mostrador Principal)
+(2001, 113, 150, '2026-03-15', NULL, 1, 1), -- Agua Mineral Con Gas 1.6L (Bodega)
+(2003, 114, 80, '2026-08-01', NULL, 1, 1), -- Agua Purificada 500ml (Bodega)
+(3001, 115, 120, '2025-12-15', NULL, 2, 1), -- Galletas Oreo 108g (Bodega)
+(3002, 116, 90, '2025-11-30', NULL, 2, 2), -- Galletas Frac Vainilla 110g (Mostrador Principal)
+(4001, 117, 70, '2025-09-30', NULL, 3, 2), -- Néctar Multi-Frutilla 200ml (Mostrador Principal)
+(4002, 118, 50, '2025-11-10', NULL, 3, 1), -- Jugo Manzana Ciruela 330ml (Bodega)
+(5001, 119, 35, '2025-08-01', NULL, 1, 2), -- Pan Integral 500g (Mostrador Principal)
+(5002, 120, 25, '2025-08-05', NULL, 1, 2), -- Baguette 200g (Mostrador Principal)
+(6001, 121, 30, '2026-07-15', NULL, 2, 1), -- Helado Vainilla 1L (Bodega)
+(6002, 122, 40, '2026-06-01', NULL, 2, 2), -- Papas Fritas 1kg (Mostrador Principal)
+(7001, 123, 45, '2025-10-15', NULL, 3, 1), -- Mix Frutos Secos 150g (Bodega)
+(7002, 124, 50, '2025-11-15', NULL, 3, 1), -- Barra de Cereal (Bodega)
+(1001, 125, 80, '2025-12-01', NULL, 1, 2); -- Leche Chocolate 200cc (Mostrador Principal)
 
 INSERT INTO usuario (nombre_usuario, contrasenia, rol) VALUES
 ('administrador', '{noop}barlacteo', 'ADMIN');
@@ -162,3 +184,30 @@ INSERT INTO movimiento (id_usuario, unidades, motivo, cod_barra, id_tipo_movimie
 (1, 10, 'Traslado a promoción', 7001, 7, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 4 DAY), '%Y-%m-%d 15:10:00'), '%Y-%m-%d %H:%i:%s')), -- Salida por Traslado
 (1, 4, 'Ajuste de inventario encontrado', 2001, 5, 5, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 17:25:00'), '%Y-%m-%d %H:%i:%s')), -- Entrada por Ajuste
 (1, 1, 'Error de sistema en stock', 2002, 6, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 19:40:00'), '%Y-%m-%d %H:%i:%s')); -- Salida por Ajuste
+INSERT INTO movimiento (id_usuario, unidades, motivo, cod_barra, id_tipo_movimiento, id_lote, id_ubicacion, fecha_movimiento) VALUES
+(1, 8, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 0 DAY), '%Y-%m-%d 08:55:52'), '%Y-%m-%d %H:%i:%s')),
+(1, 7, NULL, 2002, 2, 5, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 0 DAY), '%Y-%m-%d 17:41:29'), '%Y-%m-%d %H:%i:%s')),
+(1, 7, NULL, 6001, 2, 8, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 0 DAY), '%Y-%m-%d 17:13:41'), '%Y-%m-%d %H:%i:%s')),
+(1, 8, NULL, 4002, 2, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 0 DAY), '%Y-%m-%d 16:15:58'), '%Y-%m-%d %H:%i:%s')),
+(1, 9, NULL, 6001, 2, 8, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 0 DAY), '%Y-%m-%d 09:47:58'), '%Y-%m-%d %H:%i:%s')),
+(1, 1, NULL, 2002, 2, 5, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 17 DAY), '%Y-%m-%d 10:06:35'), '%Y-%m-%d %H:%i:%s')),
+(1, 4, NULL, 2003, 2, 13, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 11 DAY), '%Y-%m-%d 13:26:17'), '%Y-%m-%d %H:%i:%s')),
+(1, 9, NULL, 2002, 2, 5, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 8 DAY), '%Y-%m-%d 16:04:41'), '%Y-%m-%d %H:%i:%s')),
+(1, 2, NULL, 2001, 2, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 16 DAY), '%Y-%m-%d 12:24:41'), '%Y-%m-%d %H:%i:%s')),
+(1, 10, NULL, 7001, 2, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 16 DAY), '%Y-%m-%d 10:13:27'), '%Y-%m-%d %H:%i:%s')),
+(1, 4, NULL, 4002, 2, 3, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 DAY), '%Y-%m-%d 10:36:36'), '%Y-%m-%d %H:%i:%s')),
+(1, 3, NULL, 1001, 2, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 12 DAY), '%Y-%m-%d 19:57:11'), '%Y-%m-%d %H:%i:%s')),
+(1, 4, NULL, 3002, 2, 15, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 21 DAY), '%Y-%m-%d 14:44:02'), '%Y-%m-%d %H:%i:%s')),
+(1, 5, NULL, 6002, 2, 9, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 13 DAY), '%Y-%m-%d 10:00:28'), '%Y-%m-%d %H:%i:%s')),
+(1, 3, NULL, 2003, 2, 13, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 DAY), '%Y-%m-%d 15:03:45'), '%Y-%m-%d %H:%i:%s')),
+(1, 6, NULL, 1001, 2, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 6 DAY), '%Y-%m-%d 13:13:08'), '%Y-%m-%d %H:%i:%s')),
+(1, 10, NULL, 3002, 2, 15, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 3 DAY), '%Y-%m-%d 08:19:24'), '%Y-%m-%d %H:%i:%s')),
+(1, 9, NULL, 6002, 2, 9, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 20 DAY), '%Y-%m-%d 18:40:46'), '%Y-%m-%d %H:%i:%s')),
+(1, 6, NULL, 1001, 2, 1, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 7 DAY), '%Y-%m-%d 08:56:11'), '%Y-%m-%d %H:%i:%s')),
+(1, 4, NULL, 2001, 2, 4, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 9 DAY), '%Y-%m-%d 18:21:38'), '%Y-%m-%d %H:%i:%s')),
+(1, 2, NULL, 1003, 2, 12, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 15 DAY), '%Y-%m-%d 08:49:01'), '%Y-%m-%d %H:%i:%s')),
+(1, 3, NULL, 3001, 2, 2, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 10 DAY), '%Y-%m-%d 12:50:32'), '%Y-%m-%d %H:%i:%s')),
+(1, 7, NULL, 7002, 2, 11, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 14 DAY), '%Y-%m-%d 18:13:43'), '%Y-%m-%d %H:%i:%s')),
+(1, 6, NULL, 7001, 2, 10, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 DAY), '%Y-%m-%d 08:21:03'), '%Y-%m-%d %H:%i:%s')),
+(1, 4, NULL, 3002, 2, 15, NULL, STR_TO_DATE(DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 19 DAY), '%Y-%m-%d 09:33:23'), '%Y-%m-%d %H:%i:%s'));
+

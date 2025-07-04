@@ -54,7 +54,7 @@ public class ProductoControlador {
                 linkTo(methodOn(ProductoControlador.class).listarProductos()).withSelfRel());
     }
 
-    @GetMapping("/listar")
+    @GetMapping(value= "/listar", produces = "application/json; charset=UTF-8" )
     public List<ProductoDTO> listarProductosJson() {
         return productoServicio.listarProductos();
     }
