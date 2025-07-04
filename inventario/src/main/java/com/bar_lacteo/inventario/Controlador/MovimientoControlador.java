@@ -58,4 +58,11 @@ public class MovimientoControlador {
         LocalDateTime fechaFin = LocalDate.now().plusDays(1).atTime(LocalTime.MAX); // Fin del día actual: 23:59:59.999999999
         return repositorio.findDetalleVentasUltimoMes(fechaInicio, fechaFin);
     }
+
+    @GetMapping("/ventas/detalle-dia")
+    public List<DetalleVentaDTO> detalleVentasDelDia() {
+        LocalDateTime fechaInicio = LocalDate.now().atStartOfDay(); // 00:00:00 de hoy
+        LocalDateTime fechaFin = LocalDate.now().atTime(LocalTime.MAX); // 23:59:59.999999999 de hoy
+        return repositorio.findDetalleVentasDelDia(fechaInicio, fechaFin);
+    }
 }

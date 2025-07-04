@@ -15,16 +15,32 @@ public interface MovimientoRepositorio extends JpaRepository<Movimiento, Long> {
 
     @Query("SELECT new com.bar_lacteo.inventario.DTO.DetalleVentaDTO(" +
            "m.producto.nombreProducto, " +
-           "SUM(m.unidades), " +
+           "m.unidades, " +
            "m.producto.precioUnitario, " +
-           "SUM(m.unidades) * m.producto.precioUnitario, " +
-           "m.producto.categoria.nombreCategoria) " +
+           "m.unidades * m.producto.precioUnitario, " +
+           "m.producto.categoria.nombreCategoria, " +
+           "m.fechaMovimiento) " +
            "FROM Movimiento m " +
            "WHERE m.tipoMovimiento.idTipoMovimiento = 2 " +
            "AND m.fechaMovimiento >= :fechaInicio " +
-           "AND m.fechaMovimiento <= :fechaFin " +
-           "GROUP BY m.producto.nombreProducto, m.producto.precioUnitario, m.producto.categoria.nombreCategoria")
+           "AND m.fechaMovimiento <= :fechaFin")
     List<DetalleVentaDTO> findDetalleVentasUltimoMes(
+        @Param("fechaInicio") LocalDateTime fechaInicio,
+        @Param("fechaFin") LocalDateTime fechaFin
+    );
+
+    @Query("SELECT new com.bar_lacteo.inventario.DTO.DetalleVentaDTO(" +
+        "m.producto.nombreProducto, " +
+        "m.unidades, " +
+        "m.producto.precioUnitario, " +
+        "m.unidades * m.producto.precioUnitario, " +
+        "m.producto.categoria.nombreCategoria, " +
+        "m.fechaMovimiento) " +
+        "FROM Movimiento m " +
+        "WHERE m.tipoMovimiento.idTipoMovimiento = 2 " +
+        "AND m.fechaMovimiento >= :fechaInicio " +
+        "AND m.fechaMovimiento <= :fechaFin")
+    List<DetalleVentaDTO> findDetalleVentasDelDia(
         @Param("fechaInicio") LocalDateTime fechaInicio,
         @Param("fechaFin") LocalDateTime fechaFin
     );

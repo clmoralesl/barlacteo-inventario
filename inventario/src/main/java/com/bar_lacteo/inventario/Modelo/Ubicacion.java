@@ -22,7 +22,7 @@ public class Ubicacion {
     @Column(name = "id_ubicacion")
     private Long idUbicacion;
 
-    @Column(name = "descripcion_ubicacion", length = 100, nullable = false)
+    @Column(name = "descripcion", length = 100, nullable = false)
     private String descripcionUbicacion;
     
 }
