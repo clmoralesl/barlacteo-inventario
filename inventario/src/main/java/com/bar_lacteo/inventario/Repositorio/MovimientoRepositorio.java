@@ -44,4 +44,15 @@ public interface MovimientoRepositorio extends JpaRepository<Movimiento, Long> {
         @Param("fechaInicio") LocalDateTime fechaInicio,
         @Param("fechaFin") LocalDateTime fechaFin
     );
+
+    @Query("SELECT new com.bar_lacteo.inventario.DTO.DetalleVentaDTO(" +
+           "m.producto.nombreProducto, " +
+           "m.unidades, " +
+           "m.producto.precioUnitario, " +
+           "m.unidades * m.producto.precioUnitario, " +
+           "m.producto.categoria.nombreCategoria, " +
+           "m.fechaMovimiento) " +
+           "FROM Movimiento m " +
+           "WHERE m.tipoMovimiento.idTipoMovimiento = 2")
+    List<DetalleVentaDTO> findDetalleVentasGeneral();
 }

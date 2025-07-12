@@ -13,45 +13,56 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+import java.util.ArrayList;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private UserDetailServiceImpl userDetailServiceImpl;
+    private final JwtUtil jwtUtil;
 
-    @Autowired
-    private JwtUtil jwtUtil;
+    public JwtRequestFilter(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
+    }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException {
-        final String authorizationHeader = request.getHeader("Authorization");
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain chain) throws ServletException, IOException {
+        final String authHeader = request.getHeader("Authorization");
+        System.out.println("Authorization Header recibido: " + authHeader);
 
         String username = null;
         String jwt = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            jwt = authorizationHeader.substring(7);
-            username = jwtUtil.extractUsername(jwt);
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            jwt = authHeader.substring(7);
+            System.out.println("Token JWT extraído: " + jwt);
+
+            try {
+                username = jwtUtil.extractUsername(jwt);
+                System.out.println("Usuario extraído del token: " + username);
+            } catch (Exception e) {
+                System.out.println("Error al extraer username del token: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Header Authorization no presente o no empieza con Bearer");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailServiceImpl.loadUserByUsername(username);
-            if (jwtUtil.validateToken(jwt, username)) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
-            }
-        }
-        chain.doFilter(request, response);
-    }
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String path = request.getServletPath();
-        System.out.println("Ruta actual: " + path);
+            boolean valid = jwtUtil.validateToken(jwt, username);
+            System.out.println("¿Token válido?: " + valid);
 
-        return path.equals("/api/auth/login");
+            if (valid) {
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>());
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+                System.out.println("Usuario autenticado: " + username);
+            } else {
+                System.out.println("Token inválido, no se autentica usuario");
+            }
+        } else {
+            System.out.println("Usuario es null o ya autenticado en contexto");
+        }
+
+        chain.doFilter(request, response);
     }
 }

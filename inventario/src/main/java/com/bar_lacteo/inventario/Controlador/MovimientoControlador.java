@@ -5,39 +5,51 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.bar_lacteo.inventario.DTO.DetalleVentaDTO;
 import com.bar_lacteo.inventario.Exception.ResourceNotFoundException;
 import com.bar_lacteo.inventario.Modelo.Movimiento;
 import com.bar_lacteo.inventario.Repositorio.MovimientoRepositorio;
+import com.bar_lacteo.inventario.Servicio.MovimientoServicio;
 
 @RestController
-@RequestMapping ("/api/movimiento")
+@RequestMapping("/api/movimiento")
 public class MovimientoControlador {
 
     private final MovimientoRepositorio repositorio;
+    private final MovimientoServicio movimientoServicio;
 
-    public MovimientoControlador (MovimientoRepositorio repositorio){
+    @Autowired
+    public MovimientoControlador(MovimientoRepositorio repositorio, MovimientoServicio movimientoServicio) {
         this.repositorio = repositorio;
+        this.movimientoServicio = movimientoServicio;
     }
-    
+
     @GetMapping
-    public List<Movimiento>listar(){
+    public List<Movimiento> listar() {
         return repositorio.findAll();
     }
 
     @GetMapping("/{id}")
-    public Movimiento obtenerPorId (@PathVariable Long id){
+    public Movimiento obtenerPorId(@PathVariable Long id) {
         return repositorio.findById(id)
-        .orElseThrow(()-> new ResourceNotFoundException("Movimiento con ID:" + id + "no encontrado"));
-        
+            .orElseThrow(() -> new ResourceNotFoundException("Movimiento con ID:" + id + " no encontrado"));
+    }
+
+    // Nuevo endpoint: registra movimiento y asigna fecha automáticamente
+    @PostMapping("/registrar")
+    public ResponseEntity<?> registrarMovimiento(@RequestBody Movimiento movimiento) {
+        try {
+            Movimiento movimientoGuardado = movimientoServicio.registrarMovimiento(movimiento);
+            return ResponseEntity.status(HttpStatus.CREATED).body(movimientoGuardado);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error al registrar movimiento: " + e.getMessage());
+        }
     }
 
     @PostMapping
@@ -46,23 +58,29 @@ public class MovimientoControlador {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar (@PathVariable long id){
+    public void eliminar(@PathVariable long id) {
         if (!repositorio.existsById(id)) {
-            throw new ResourceNotFoundException("Movimiento con ID:" + id + "no encontrado");
+            throw new ResourceNotFoundException("Movimiento con ID:" + id + " no encontrado");
         }
         repositorio.deleteById(id);
     }
+
     @GetMapping("/ventas/detalle-ultimomes")
     public List<DetalleVentaDTO> detalleVentasUltimoMes() {
         LocalDateTime fechaInicio = LocalDate.now().minusMonths(1).atStartOfDay();
-        LocalDateTime fechaFin = LocalDate.now().plusDays(1).atTime(LocalTime.MAX); // Fin del día actual: 23:59:59.999999999
+        LocalDateTime fechaFin = LocalDate.now().plusDays(1).atTime(LocalTime.MAX);
         return repositorio.findDetalleVentasUltimoMes(fechaInicio, fechaFin);
     }
 
     @GetMapping("/ventas/detalle-dia")
     public List<DetalleVentaDTO> detalleVentasDelDia() {
-        LocalDateTime fechaInicio = LocalDate.now().atStartOfDay(); // 00:00:00 de hoy
-        LocalDateTime fechaFin = LocalDate.now().atTime(LocalTime.MAX); // 23:59:59.999999999 de hoy
+        LocalDateTime fechaInicio = LocalDate.now().atStartOfDay();
+        LocalDateTime fechaFin = LocalDate.now().atTime(LocalTime.MAX);
         return repositorio.findDetalleVentasDelDia(fechaInicio, fechaFin);
+    }
+
+    @GetMapping("/ventas/detalle-general")
+    public List<DetalleVentaDTO> detalleVentasGeneral() {
+        return repositorio.findDetalleVentasGeneral();
     }
 }

@@ -1,5 +1,5 @@
 INSERT INTO categoria (nombre_categoria) VALUES
-('Lacteos'),
+('Lácteos'),
 ('Bebidas'),
 ('Galletas'),
 ('Jugos'),
@@ -69,8 +69,6 @@ INSERT INTO lote (cod_barra, numero_lote, stock_lote, fecha_vencimiento, id_orde
 (7002, 124, 50, '2025-11-15', NULL, 3, 1), -- Barra de Cereal (Bodega)
 (1001, 125, 80, '2025-12-01', NULL, 1, 2); -- Leche Chocolate 200cc (Mostrador Principal)
 
-INSERT INTO usuario (nombre_usuario, contrasenia, rol) VALUES
-('administrador', '{noop}barlacteo', 'ADMIN');
 
 INSERT INTO tipo_movimiento (descripcion_Tipo_Movimiento, es_entrada) VALUES
 ('Entrada por Compra', TRUE),
