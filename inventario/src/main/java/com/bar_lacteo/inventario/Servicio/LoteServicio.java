@@ -1,4 +1,3 @@
-
 package com.bar_lacteo.inventario.Servicio;
 
 import java.util.List;
@@ -30,10 +29,9 @@ public class LoteServicio {
         return lotes;
     }
 
-
-
-
-
-
+    public Lote obtenerLotePorId(Integer id) {
+        return loteRepositorio.findById(id)
+                .orElseThrow(java.util.NoSuchElementException::new);
+    }
 
 }
