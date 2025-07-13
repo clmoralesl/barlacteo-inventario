@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +16,9 @@ import com.bar_lacteo.inventario.Modelo.Movimiento;
 import com.bar_lacteo.inventario.Repositorio.MovimientoRepositorio;
 import com.bar_lacteo.inventario.Servicio.MovimientoServicio;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/api/movimiento")
 public class MovimientoControlador {
@@ -23,7 +26,6 @@ public class MovimientoControlador {
     private final MovimientoRepositorio repositorio;
     private final MovimientoServicio movimientoServicio;
 
-    @Autowired
     public MovimientoControlador(MovimientoRepositorio repositorio, MovimientoServicio movimientoServicio) {
         this.repositorio = repositorio;
         this.movimientoServicio = movimientoServicio;
@@ -82,5 +84,17 @@ public class MovimientoControlador {
     @GetMapping("/ventas/detalle-general")
     public List<DetalleVentaDTO> detalleVentasGeneral() {
         return repositorio.findDetalleVentasGeneral();
+    }
+
+    @GetMapping("/alt")
+    public RepresentationModel<?> hateoasRoot() {
+        RepresentationModel<?> model = new RepresentationModel<>();
+        model.add(linkTo(methodOn(MovimientoControlador.class).listar()).withRel("listar-movimientos"));
+        model.add(linkTo(methodOn(MovimientoControlador.class).registrarMovimiento(null)).withRel("registrar-movimiento"));
+        model.add(linkTo(methodOn(MovimientoControlador.class).detalleVentasUltimoMes()).withRel("detalle-ventas-ultimomes"));
+        model.add(linkTo(methodOn(MovimientoControlador.class).detalleVentasDelDia()).withRel("detalle-ventas-dia"));
+        model.add(linkTo(methodOn(MovimientoControlador.class).detalleVentasGeneral()).withRel("detalle-ventas-general"));
+        // Puedes agregar más enlaces según tus endpoints
+        return model;
     }
 }

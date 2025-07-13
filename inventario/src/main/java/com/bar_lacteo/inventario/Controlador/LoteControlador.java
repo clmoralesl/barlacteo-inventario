@@ -12,7 +12,6 @@ import com.bar_lacteo.inventario.Servicio.LoteServicio;
 import com.bar_lacteo.inventario.Servicio.MovimientoServicio;
 import com.bar_lacteo.inventario.Repositorio.TipoMovimientoRepositorio;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -36,7 +35,6 @@ public class LoteControlador {
         try {
             Lote loteGuardado = loteServicio.crearLote(lote);
 
-            // Llama al microservicio de autenticación para obtener el id de usuario actual
             HttpHeaders headers = new HttpHeaders();
             headers.set("Authorization", authHeader);
             HttpEntity<Void> entity = new HttpEntity<>(headers);
