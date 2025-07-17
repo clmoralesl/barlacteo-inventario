@@ -86,15 +86,19 @@ public class MovimientoControlador {
         return repositorio.findDetalleVentasGeneral();
     }
 
-    @GetMapping("/alt")
+    @GetMapping("/hateoas")
     public RepresentationModel<?> hateoasRoot() {
         RepresentationModel<?> model = new RepresentationModel<>();
-        model.add(linkTo(methodOn(MovimientoControlador.class).listar()).withRel("listar-movimientos"));
-        model.add(linkTo(methodOn(MovimientoControlador.class).registrarMovimiento(null)).withRel("registrar-movimiento"));
-        model.add(linkTo(methodOn(MovimientoControlador.class).detalleVentasUltimoMes()).withRel("detalle-ventas-ultimomes"));
-        model.add(linkTo(methodOn(MovimientoControlador.class).detalleVentasDelDia()).withRel("detalle-ventas-dia"));
-        model.add(linkTo(methodOn(MovimientoControlador.class).detalleVentasGeneral()).withRel("detalle-ventas-general"));
-        // Puedes agregar más enlaces según tus endpoints
+        model.add(linkTo(methodOn(MovimientoControlador.class)
+        .listar()).withRel("listar-movimientos"));
+        model.add(linkTo(methodOn(MovimientoControlador.class)
+        .registrarMovimiento(null)).withRel("registrar-movimiento"));
+        model.add(linkTo(methodOn(MovimientoControlador.class)
+        .detalleVentasUltimoMes()).withRel("detalle-ventas-ultimomes"));
+        model.add(linkTo(methodOn(MovimientoControlador.class)
+        .detalleVentasDelDia()).withRel("detalle-ventas-dia"));
+        model.add(linkTo(methodOn(MovimientoControlador.class)
+        .detalleVentasGeneral()).withRel("detalle-ventas-general"));
         return model;
     }
 }

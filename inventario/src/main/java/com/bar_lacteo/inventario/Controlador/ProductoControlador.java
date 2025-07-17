@@ -27,6 +27,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RequestMapping("/api/producto")
 public class ProductoControlador {
 
+
     private final ProductoRepositorio productoRepositorio;
 
     @Autowired
