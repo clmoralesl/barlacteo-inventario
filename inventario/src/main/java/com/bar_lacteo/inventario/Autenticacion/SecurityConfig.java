@@ -30,6 +30,11 @@ public class SecurityConfig {
         .cors().and()
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
+            .requestMatchers(
+                "/swagger-ui/**",
+                "/swagger-ui.html",
+                "/v3/api-docs/**"
+            ).permitAll()
             .anyRequest().authenticated()
         )
         .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
